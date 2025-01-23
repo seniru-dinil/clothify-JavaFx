@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="586.0" prefWidth="912.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.LoginFormController">
+   <children>
+      <VBox alignment="CENTER" layoutY="-2.0" prefHeight="586.0" prefWidth="450.0" spacing="20.0" style="-fx-background-color: #1F2937;">
+         <children>
+            <ImageView fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/store.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="119.0" prefWidth="450.0">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="178.0" text="Clothify POS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="38.0" prefWidth="292.0" text="Streamline your clothing store operations with our advanced  point of sales system" textAlignment="CENTER" textFill="#9ca3af" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="456.0" layoutY="58.0" prefHeight="77.0" prefWidth="450.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="22.0" prefWidth="450.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="32.0" prefWidth="234.0" text="Create Admin Account" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="450.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="292.0" text="Sign up to manage your store" textAlignment="CENTER" textFill="#9ca3af" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="450.0" layoutY="156.0" prefHeight="406.0" prefWidth="462.0" spacing="10.0">
+         <padding>
+            <Insets left="70.0" right="70.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="399.0" spacing="30.0">
+               <children>
+                  <VBox prefHeight="54.0" prefWidth="190.0" spacing="2.0">
+                     <children>
+                        <Label text="First Name" textFill="WHITE">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <TextField id="#inputFld" fx:id="inputFld" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                           <padding>
+                              <Insets left="14.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="106.0" layoutY="10.0" prefHeight="54.0" prefWidth="190.0" spacing="2.0">
+                     <children>
+                        <Label text="Last Name" textFill="WHITE">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <TextField id="#inputFld" fx:id="inputFld1" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                           <padding>
+                              <Insets left="14.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox prefHeight="58.0" prefWidth="352.0" spacing="2.0">
+               <children>
+                  <Label text="Email Address" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField id="#inputFld" fx:id="inputFld2" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                     <padding>
+                        <Insets left="14.0" />
+                     </padding>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox layoutX="65.0" layoutY="80.0" prefHeight="58.0" prefWidth="352.0" spacing="2.0">
+               <children>
+                  <Label text="Password" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField id="#inputFld" fx:id="inputFld21" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                     <padding>
+                        <Insets left="14.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox layoutX="65.0" layoutY="153.0" prefHeight="58.0" prefWidth="352.0" spacing="2.0">
+               <children>
+                  <Label text="Confirm Password" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField id="#inputFld" fx:id="inputFld211" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                     <padding>
+                        <Insets left="14.0" />
+                     </padding>
+                  </TextField>
+               </children>
+            </VBox>
+            <JFXButton prefHeight="34.0" prefWidth="366.0" style="-fx-background-color: #4F46E5;" text="Create Account" textFill="WHITE">
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="11.0" />
+               </VBox.margin>
+            </JFXButton>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="326.0" spacing="5.0">
+               <children>
+                  <Label opacity="0.57" text="Already have an account?" textFill="WHITE" />
+                  <Label text="Sign in" textFill="#818cf8" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

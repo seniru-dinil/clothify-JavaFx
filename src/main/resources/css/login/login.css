@@ -1,0 +1,8 @@
+.border{
+    -fx-background-color:  #1F2937;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #6B7280;
+    -fx-border-width: 0.5px;
+    -fx-padding: 5px 8px;
+}
