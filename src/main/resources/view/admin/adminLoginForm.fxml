@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="586.0" prefWidth="831.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.LoginFormController">
+<AnchorPane prefHeight="586.0" prefWidth="831.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.admin.AdminLoginFormController">
    <children>
       <VBox id="#border-radius" alignment="TOP_CENTER" layoutX="252.0" layoutY="94.0" prefHeight="398.0" prefWidth="326.0" spacing="8.0" style="-fx-background-color: #1F2937;" stylesheets="@../../css/login/login.css">
          <children>
@@ -42,7 +43,7 @@
                      <children>
                         <StackPane alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="277.0">
                            <children>
-                              <TextField id="#inputFld" fx:id="inputFld11" prefHeight="36.0" prefWidth="239.0" promptText="Email address" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                              <TextField id="#inputFld" fx:id="txtEmail" prefHeight="36.0" prefWidth="239.0" promptText="Email address" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
                                  <padding>
                                     <Insets left="40.0" />
                                  </padding>
@@ -63,7 +64,7 @@
                      <children>
                         <StackPane alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="277.0">
                            <children>
-                              <TextField id="#inputFld" fx:id="inputFld1" prefHeight="36.0" prefWidth="239.0" promptText="Password" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                              <TextField id="#inputFld" fx:id="txtPassword" prefHeight="36.0" prefWidth="239.0" promptText="Password" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
                                  <padding>
                                     <Insets left="40.0" />
                                  </padding>
@@ -93,17 +94,20 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Forgot password?" textFill="#818cf8">
+                  <Label accessibleRole="BUTTON" alignment="CENTER_RIGHT" contentDisplay="RIGHT" onMouseClicked="#btnForgotPasswordOnAction" text="Forgot password?" textFill="#818cf8">
                      <HBox.margin>
                         <Insets left="66.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <JFXButton prefHeight="21.0" prefWidth="274.0" style="-fx-background-color: #4F46E5;" text="Sign in" textFill="WHITE">
+            <JFXButton onAction="#btnSigninOnAction" prefHeight="21.0" prefWidth="274.0" style="-fx-background-color: #4F46E5;" text="Sign in" textFill="WHITE">
                <padding>
                   <Insets bottom="8.0" top="8.0" />
                </padding>
@@ -111,7 +115,10 @@
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="326.0" spacing="3.0">
                <children>
                   <Label opacity="0.57" text="Don't have an account?" textFill="WHITE" />
-                  <Label text=" Sign up" textFill="#818cf8" />
+                  <Label accessibleRole="BUTTON" onMouseClicked="#btnSignoutOnAction" text=" Sign up" textFill="#818cf8">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="39.0" prefWidth="326.0" spacing="20.0">
