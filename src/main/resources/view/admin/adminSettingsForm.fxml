@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="682.0" prefWidth="924.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.admin.AdminSettingsFormController">
+   <children>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="924.0">
+   <children>
+      <HBox alignment="CENTER" prefHeight="65.0" prefWidth="924.0" spacing="20.0">
+         <children>
+            <Group>
+               <children>
+                  <Circle fill="#1f2937" radius="26.0" stroke="#1f2937" strokeType="INSIDE" />
+                  <StackPane layoutX="-28.0" layoutY="-24.0" prefHeight="48.0" prefWidth="55.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/admin-main.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </Group>
+            <VBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="297.0">
+               <children>
+                  <Label text="Admin Settings" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="Manage your account preferences and security settings" textFill="#9ca3af" />
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="463.0" style="-fx-background-color: #1F2937;">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <StackPane prefHeight="98.0" prefWidth="58.0">
+                           <children>
+                              <Circle fill="#ffffff21" radius="40.0" stroke="#ffffff00" strokeType="INSIDE" />
+                              <ImageView fx:id="adminImg" fitHeight="47.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/role.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="btnBrowseImg" onAction="#btnBrowseImgOnAction" style="-fx-background-color: #2563EB;" text="Browse new" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <VBox alignment="TOP_CENTER" prefHeight="108.0" prefWidth="463.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="52.0" prefWidth="463.0" spacing="15.0" style="-fx-background-color: #1F2937;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="214.0">
+                           <children>
+                              <Label text="First Name" textFill="#d1d5db" />
+                              <TextField fx:id="txtFirstName" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="25.0" prefHeight="70.0" prefWidth="214.0">
+                           <children>
+                              <Label text="Last Name" textFill="#d1d5db" />
+                              <TextField fx:id="txtLastName" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="463.0" spacing="15.0" style="-fx-background-color: #1F2937;">
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
+                           <children>
+                              <Label text="Email" textFill="#d1d5db" />
+                              <TextField fx:id="txtEmail" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets top="15.0" />
+         </VBox.margin>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="463.0" spacing="15.0" style="-fx-background-color: #1F2937;">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
+                     <children>
+                        <Label text="Current password" textFill="#d1d5db" />
+                        <TextField fx:id="txtCurrentPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="36.0" prefHeight="52.0" prefWidth="463.0" spacing="15.0" style="-fx-background-color: #1F2937;">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
+                     <children>
+                        <Label text="New password" textFill="#d1d5db" />
+                        <TextField fx:id="txtNewPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="52.0" prefWidth="463.0" spacing="15.0" style="-fx-background-color: #1F2937;">
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
+                     <children>
+                        <Label text="Confirm password" textFill="#d1d5db" />
+                        <TextField fx:id="txtConfirmPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="463.0" spacing="10.0">
+         <children>
+            <JFXButton minHeight="-Infinity" onAction="#btnCancelOnAction" prefHeight="33.0" style="-fx-background-color: #1F2937;" text="Cancel" textFill="WHITE">
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="394.0" layoutY="16.0" minHeight="-Infinity" onAction="#btnSaveOnAction" prefHeight="33.0" style="-fx-background-color: #2563EB;" text="Save Changes" textFill="WHITE">
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+            </JFXButton>
+         </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="230.0" right="230.0" />
+   </padding>
+</VBox>
+   </children>
+</AnchorPane>

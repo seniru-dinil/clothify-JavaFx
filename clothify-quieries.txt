@@ -1,0 +1,132 @@
+-- Create Database
+CREATE DATABASE ecommerce_app;
+USE ecommerce_app;
+
+-- Admin Table
+CREATE TABLE admin (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Employee Table
+CREATE TABLE employee (
+    employee_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Customer Table
+CREATE TABLE customer (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone_number VARCHAR(15),
+    address TEXT
+);
+
+-- Category Table
+CREATE TABLE category (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL
+);
+
+-- Supplier Table
+CREATE TABLE supplier (
+    supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    supplier_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100),
+    phone_number VARCHAR(15),
+    address TEXT,
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES category(category_id) ON DELETE SET NULL
+);
+
+-- Product Table
+CREATE TABLE product (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    stock INT NOT NULL,
+    image_path VARCHAR(255),
+    category_id INT,
+    supplier_id INT,
+    FOREIGN KEY (category_id) REFERENCES category(category_id) ON DELETE CASCADE,
+    FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON DELETE SET NULL
+);
+
+-- Orders Table
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE
+);
+
+-- Order Details Table
+CREATE TABLE order_details (
+    order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE
+);
+
+-- Trigger to prevent deleting a customer with orders
+CREATE TRIGGER before_customer_delete
+BEFORE DELETE ON customer
+FOR EACH ROW
+BEGIN
+    IF EXISTS (SELECT 1 FROM orders WHERE customer_id = OLD.customer_id) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete customer with existing orders';
+    END IF;
+END;
+
+-- Insert sample data into Admin Table
+INSERT INTO admin (first_name, last_name, email, password) VALUES
+('John', 'Doe', 'admin1@example.com', 'password123'),
+('Jane', 'Smith', 'admin2@example.com', 'password456');
+
+-- Insert sample data into Employee Table
+INSERT INTO employee (first_name, last_name, email, password) VALUES
+('Alice', 'Brown', 'employee1@example.com', 'password789'),
+('Bob', 'Davis', 'employee2@example.com', 'password321');
+
+-- Insert sample data into Customer Table
+INSERT INTO customer (first_name, last_name, email, phone_number, address) VALUES
+('Charlie', 'Johnson', 'customer1@example.com', '1234567890', '123 Elm Street'),
+('Dana', 'White', 'customer2@example.com', '9876543210', '456 Oak Avenue');
+
+-- Insert sample data into Category Table
+INSERT INTO category (category_name) VALUES
+('Kids'),
+('Gents'),
+('Ladies');
+
+-- Insert sample data into Supplier Table
+INSERT INTO supplier (supplier_name, email, phone_number, address, category_id) VALUES
+('ABC Supplies', 'abc@example.com', '1112223333', '789 Maple Road', 1),
+('XYZ Traders', 'xyz@example.com', '4445556666', '101 Pine Lane', 2);
+
+-- Insert sample data into Product Table
+INSERT INTO product (product_name, price, stock, image_path, category_id, supplier_id) VALUES
+('Kids T-shirt', 15.99, 50, '/images/kids_tshirt.jpg', 1, 1),
+('Gents Jacket', 49.99, 30, '/images/gents_jacket.jpg', 2, 2),
+('Ladies Dress', 39.99, 20, '/images/ladies_dress.jpg', 3, NULL);
+
+-- Insert sample data into Orders Table
+INSERT INTO orders (customer_id) VALUES
+(1),
+(2);
+
+-- Insert sample data into Order Details Table
+INSERT INTO order_details (order_id, product_id, quantity) VALUES
+(1, 1, 2),
+(1, 2, 1),
+(2, 3, 1);
