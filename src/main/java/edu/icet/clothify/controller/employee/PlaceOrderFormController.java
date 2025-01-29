@@ -95,9 +95,7 @@ public class PlaceOrderFormController implements Initializable {
 
     public List<Product> getProducts() {
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product(1, "Laptop", 750.99, "A high-performance laptop", 20, "customers.png", 101, 201));
-        productList.add(new Product(2, "Headphones", 49.99, "Wireless headphones with noise cancellation", 50, "admin.png", 102, 202));
-        productList.add(new Product(3, "Smartphone", 599.99, "Latest model smartphone with advanced features", 15, "add.png", 103, 203));
+
         return productList;
     }
 }

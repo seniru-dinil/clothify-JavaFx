@@ -54,10 +54,10 @@ public class SupplierTableCard {
                 imgPath = "/img/img3.png";
                 break;
             case 2:
-                imgPath = "/img/img2.png";
+                imgPath = "/img/img1.png";
                 break;
             case 3:
-                imgPath = "/img/img1.png";
+                imgPath = "/img/img2.png";
                 break;
             default:
                 imgPath = "/img/default.png";
@@ -81,10 +81,11 @@ public class SupplierTableCard {
         // Create HBox for Edit and Delete buttons
         HBox actionBox = new HBox();
         actionBox.setAlignment(javafx.geometry.Pos.CENTER);
-        actionBox.setLayoutX(791.0);
+        actionBox.setLayoutX(799.0);
         actionBox.setLayoutY(8.0);
         actionBox.setPrefHeight(26.0);
         actionBox.setPrefWidth(33.0);
+        actionBox.setSpacing(3);
 
         // Edit Button
         StackPane editPane = createIconButton("/img/edite.png",

@@ -13,7 +13,7 @@ import javafx.scene.paint.Paint;
 
 public class CustomerTableCard {
 
-    Customer customer;
+
 
     private static CustomerTableCard instance;
     public static CustomerTableCard getInstance() {
@@ -21,7 +21,6 @@ public class CustomerTableCard {
     }
 
     public AnchorPane createCustomerPane(Customer customer) {
-        this.customer=customer;
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefSize(874, 42);
         anchorPane.setStyle("-fx-background-color: #1F2937;");
@@ -40,7 +39,7 @@ public class CustomerTableCard {
         Label txtMobile = createLabel(567.0, 12.0, 98.0, 18.0, customer.getMobileNumber());
 
         // Action buttons container
-        HBox buttonBox = createButtonHBox();
+        HBox buttonBox = createButtonHBox(customer);
 
         anchorPane.getChildren().addAll(txtID, txtName, txtEmail, txtMobile, buttonBox);
         return anchorPane;
@@ -55,7 +54,7 @@ public class CustomerTableCard {
         return label;
     }
 
-    private HBox createButtonHBox() {
+    private HBox createButtonHBox(Customer customer) {
         HBox hbox = new HBox();
         hbox.setLayoutX(796);
         hbox.setLayoutY(8);
@@ -68,7 +67,7 @@ public class CustomerTableCard {
                 "/img/edite.png",
                 16, 16,
                 24, 2,
-                ()->handleEdit()
+                ()->handleEdit(customer)
         );
 
         // Delete Button
@@ -76,7 +75,7 @@ public class CustomerTableCard {
                 "/img/delete.png",
                 18, 20,
                 22, 0,
-                ()->handleDelete()
+                ()->handleDelete(customer)
         );
 
         hbox.getChildren().addAll(editButton, deleteButton);
@@ -105,11 +104,11 @@ public class CustomerTableCard {
         return pane;
     }
 
-    public void handleDelete(){
+    public void handleDelete(Customer customer){
         System.out.println(customer.getFirstName()+" deleted");
     }
 
-    public void handleEdit(){
+    public void handleEdit(Customer customer){
         System.out.println(customer.getFirstName()+" edited");
     }
 }
