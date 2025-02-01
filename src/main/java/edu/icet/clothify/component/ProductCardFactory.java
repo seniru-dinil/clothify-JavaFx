@@ -1,15 +1,14 @@
 package edu.icet.clothify.component;
 
+import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Product;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.geometry.Insets;
-import com.jfoenix.controls.JFXButton;
-
-import java.awt.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class ProductCardFactory {
 
@@ -36,11 +35,10 @@ public class ProductCardFactory {
         imageView.setPreserveRatio(true);
         imageView.setPickOnBounds(true);
         try {
-//            Image image = new Image(product.getProductImagePath());
             Image image = new Image("/img/"+product.getProductImagePath());
             imageView.setImage(image);
         } catch (Exception e) {
-            System.err.println("Error loading image: " + e.getMessage());
+
         }
 
         // Text Information Container
@@ -89,8 +87,8 @@ public class ProductCardFactory {
         JFXButton addToCartButton = new JFXButton("Add to cart");
         addToCartButton.setStyle("-fx-background-color: #2563EB; -fx-text-fill: WHITE;");
         addToCartButton.setPrefSize(284, 29);
+        addToCartButton.setPadding(new Insets(7,0,7,0));
         addToCartButton.setOnAction(event -> {
-            System.out.println(product);
             ShoppingCartService.getInstance().addToCartContainer(product);
         });
 

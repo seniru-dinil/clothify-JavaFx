@@ -2,6 +2,10 @@ package edu.icet.clothify.component.tableCard;
 
 import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Employee;
+import edu.icet.clothify.service.ServiceFactory;
+import edu.icet.clothify.service.custom.EmployeeService;
+import edu.icet.clothify.util.EmployeeUtil;
+import edu.icet.clothify.util.ServiceType;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -11,9 +15,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 
+import java.sql.SQLException;
+
 public class EmployeeTableCard {
 
-    Employee employee;
+
 
     private static EmployeeTableCard instance;
     public static EmployeeTableCard getInstance() {
@@ -21,7 +27,6 @@ public class EmployeeTableCard {
     }
 
     public AnchorPane createAnchorPane(Employee employee) {
-        this.employee =employee;
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefSize(874, 42);
         anchorPane.setStyle("-fx-background-color: #1F2937;");
@@ -37,17 +42,18 @@ public class EmployeeTableCard {
         Label txtEmail = createLabel(347.0, 12.0, 170.0, 18.0, employee.getEmail());
 
         // Mobile Label
-        Label txtDate = createLabel(567.0, 12.0, 98.0, 18.0, employee.getJoinedDate());
+        Label txtDate = createLabel(567.0, 12.0, 98.0, 18.0, String.valueOf(employee.getJoinedDate()));
 
         // Action buttons container
-        HBox buttonBox = createButtonHBox();
+        HBox buttonBox = createButtonHBox(employee);
 
         anchorPane.getChildren().addAll(txtID, txtName, txtEmail, txtDate, buttonBox);
         return anchorPane;
     }
 
     private Label createLabel(double x, double y, double width, double height, String text) {
-        Label label = new Label(text);
+        String[] s = text.split("[T]");
+        Label label = new Label(s[0]);
         label.setLayoutX(x);
         label.setLayoutY(y);
         label.setPrefSize(width, height);
@@ -55,7 +61,7 @@ public class EmployeeTableCard {
         return label;
     }
 
-    private HBox createButtonHBox() {
+    private HBox createButtonHBox(Employee employee) {
         HBox hbox = new HBox();
         hbox.setLayoutX(796);
         hbox.setLayoutY(8);
@@ -63,23 +69,23 @@ public class EmployeeTableCard {
         hbox.setAlignment(Pos.CENTER);
         hbox.setSpacing(5);
 
-        // Edit Button
-        StackPane editButton = createIconButton(
-                "/img/edite.png",
-                16, 16,
-                24, 2,
-                ()->handleEdit()
-        );
+
 
         // Delete Button
         StackPane deleteButton = createIconButton(
                 "/img/delete.png",
                 18, 20,
                 22, 0,
-                ()->handleDelete()
+                ()-> {
+                    try {
+                        handleDelete(employee);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
         );
 
-        hbox.getChildren().addAll(editButton, deleteButton);
+        hbox.getChildren().addAll(deleteButton);
         return hbox;
     }
 
@@ -98,18 +104,21 @@ public class EmployeeTableCard {
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             icon.setImage(image);
         } catch (Exception e) {
-            System.err.println("Error loading image: " + e.getMessage());
         }
 
         pane.getChildren().addAll(icon, button);
         return pane;
     }
 
-    public void handleDelete(){
-        System.out.println(employee.getEmployeeFirstName()+" deleted");
+    public void handleDelete(Employee employee) throws SQLException {
+        EmployeeService service = ServiceFactory.getInstance().getService(ServiceType.EMPLOYEE);
+        boolean b = service.deleteEmployee(employee.getEmployeeId());
+        EmployeeUtil.getInstance().loadContainer();
+        System.out.println(b?"deleted":"error");
     }
 
-    public void handleEdit(){
-        System.out.println(employee.getEmployeeFirstName()+" edited");
+    public void handleEdit(Employee employee){
+        EmployeeService service = ServiceFactory.getInstance().getService(ServiceType.EMPLOYEE);
+        service.updateEmployee(employee);
     }
 }

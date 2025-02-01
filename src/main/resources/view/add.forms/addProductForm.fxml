@@ -98,7 +98,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
                            <children>
                               <Label text="Product Name" textFill="#d1d5db" />
-                              <TextField fx:id="txtProductName" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtProductName" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -108,13 +108,13 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
                            <children>
                               <Label text="Product Price" textFill="#d1d5db" />
-                              <TextField fx:id="txtPrice" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtPrice" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
                            <children>
                               <Label text="Stock" textFill="#d1d5db" />
-                              <TextField fx:id="txtStock" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtStock" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>

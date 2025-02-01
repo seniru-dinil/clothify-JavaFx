@@ -2,7 +2,14 @@ package edu.icet.clothify.component.tableCard;
 
 import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Customer;
+import edu.icet.clothify.service.ServiceFactory;
+import edu.icet.clothify.service.custom.CustomerService;
+import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.CustomerUtil;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,14 +17,20 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class CustomerTableCard {
 
 
-
     private static CustomerTableCard instance;
+
+    private CustomerTableCard(){}
+
     public static CustomerTableCard getInstance() {
-        return instance==null?instance=new CustomerTableCard():instance;
+        return instance == null ? instance = new CustomerTableCard() : instance;
     }
 
     public AnchorPane createCustomerPane(Customer customer) {
@@ -30,7 +43,7 @@ public class CustomerTableCard {
 
         // Name Label (combine first and last name)
         String fullName = customer.getFirstName() + " " + customer.getLastName();
-        Label txtName = createLabel(137.0, 12.0, 78.0, 18.0, fullName);
+        Label txtName = createLabel(137.0, 12.0, 90.0, 18.0, fullName);
 
         // Email Label
         Label txtEmail = createLabel(347.0, 12.0, 170.0, 18.0, customer.getEmail());
@@ -63,32 +76,34 @@ public class CustomerTableCard {
         hbox.setSpacing(5);
 
         // Edit Button
-        StackPane editButton = createIconButton(
-                "/img/edite.png",
-                16, 16,
-                24, 2,
-                ()->handleEdit(customer)
-        );
+        StackPane editButton = createIconButton("/img/edite.png", 16, 16, 24, 2, () -> {
+            try {
+                handleEdit(customer);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         // Delete Button
-        StackPane deleteButton = createIconButton(
-                "/img/delete.png",
-                18, 20,
-                22, 0,
-                ()->handleDelete(customer)
-        );
+        StackPane deleteButton = createIconButton("/img/delete.png", 18, 20, 22, 0, () -> {
+            try {
+                handleDelete(customer);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         hbox.getChildren().addAll(editButton, deleteButton);
         return hbox;
     }
 
-    private StackPane createIconButton(String imagePath, double imgWidth, double imgHeight, double btnWidth, double btnHeight,Runnable action) {
+    private StackPane createIconButton(String imagePath, double imgWidth, double imgHeight, double btnWidth, double btnHeight, Runnable action) {
         StackPane pane = new StackPane();
 
         JFXButton button = new JFXButton();
         button.setPrefSize(btnWidth, btnHeight);
         button.setStyle("-fx-background-color: transparent;");
-        button.setOnAction(e->action.run());
+        button.setOnAction(e -> action.run());
         ImageView icon = new ImageView();
         icon.setFitWidth(imgWidth);
         icon.setFitHeight(imgHeight);
@@ -97,18 +112,29 @@ public class CustomerTableCard {
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             icon.setImage(image);
         } catch (Exception e) {
-            System.err.println("Error loading image: " + e.getMessage());
+
         }
 
-        pane.getChildren().addAll(icon,button);
+        pane.getChildren().addAll(icon, button);
         return pane;
     }
 
-    public void handleDelete(Customer customer){
-        System.out.println(customer.getFirstName()+" deleted");
+    public void handleDelete(Customer customer) throws SQLException {
+        CustomerService service = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
+        boolean b = service.deleteCustomer(customer.getCustomerID());
+        System.out.println(b ? " deleted" : "not deleted");
+     CustomerUtil.getInstance().reloadContainer();
     }
 
-    public void handleEdit(Customer customer){
-        System.out.println(customer.getFirstName()+" edited");
+    public void handleEdit(Customer customer) throws IOException {
+        loadUpdateWindow();
+        CustomerUtil.getInstance().setInitialValues(customer);
+    }
+
+    private void loadUpdateWindow() throws IOException {
+        Object load = FXMLLoader.load(getClass().getResource("/view/update/updateCustomerForm.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene((Parent) load));
+        stage.show();
     }
 }

@@ -13,12 +13,12 @@ public class ServiceFactory {
         return instance==null?instance=new ServiceFactory() :instance;
     }
 
-    public SupperService getService(ServiceType type){
+    public <T extends SupperService>T getService(ServiceType type){
             switch(type){
-                case CUSTOMER :return new CustomerServiceImpl();
-                case PRODUCT: return new ProductServiceImpl();
-                case EMPLOYEE:return new EmployeeServiceImpl();
-                case SUPPLIER:return new SupplierServiceImpl();
+                case CUSTOMER :return (T) new CustomerServiceImpl();
+                case PRODUCT: return (T) new ProductServiceImpl();
+                case EMPLOYEE:return (T) new EmployeeServiceImpl();
+                case SUPPLIER:return (T) new SupplierServiceImpl();
             }
             return null;
     }

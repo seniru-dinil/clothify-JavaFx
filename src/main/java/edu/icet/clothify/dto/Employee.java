@@ -3,18 +3,21 @@ package edu.icet.clothify.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
+
 
 @Data
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
-    private int employeeId;
+    private Integer employeeId;
     private String employeeFirstName;
     private String employeeLastName;
     private String email;
-    private String joinedDate;
+    private LocalDateTime joinedDate;
     private String password;
 }

@@ -8,10 +8,12 @@ public class DataBaseConnection {
     private static DataBaseConnection instance;
     private Connection connection;
 
+
+
     private DataBaseConnection() throws SQLException {
         String username="root";
         String password="1234";
-        String url="jdbc:mysql://localhost:3306/clothify_db";
+        String url="jdbc:mysql://localhost:3306/clothify";
         connection = DriverManager.getConnection(url, username, password);
     }
 

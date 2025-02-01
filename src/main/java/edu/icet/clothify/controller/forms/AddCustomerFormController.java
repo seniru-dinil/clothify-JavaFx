@@ -4,6 +4,7 @@ import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.CustomerUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -43,7 +44,7 @@ public class AddCustomerFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException {
-        CustomerService service = (CustomerService) ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
+        CustomerService service = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
         Customer customer = new Customer(
                 0,
                 txtFirstName.getText(),
@@ -52,8 +53,8 @@ public class AddCustomerFormController {
                 txtMobile.getText(),
                 txtAddress.getText()
         );
-        boolean b = service.addCustomer(customer);
-        System.out.println(b);
+        service.addCustomer(customer);
+        CustomerUtil.getInstance().reloadContainer();
         closeWindow(event);
     }
 

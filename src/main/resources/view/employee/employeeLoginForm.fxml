@@ -42,7 +42,7 @@
                      <children>
                         <StackPane alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="277.0">
                            <children>
-                              <TextField id="#inputFld" fx:id="txtEmail" prefHeight="36.0" prefWidth="239.0" promptText="Email address" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                              <TextField id="#inputFld" fx:id="txtEmail" prefHeight="36.0" prefWidth="239.0" promptText="Email address" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css">
                                  <padding>
                                     <Insets left="40.0" />
                                  </padding>
@@ -63,7 +63,7 @@
                      <children>
                         <StackPane alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="277.0">
                            <children>
-                              <TextField id="#inputFld" fx:id="txtPassword" prefHeight="36.0" prefWidth="239.0" promptText="Password" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                              <TextField id="#inputFld" fx:id="txtPassword" prefHeight="36.0" prefWidth="239.0" promptText="Password" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css">
                                  <padding>
                                     <Insets left="40.0" />
                                  </padding>

@@ -3,6 +3,13 @@ package edu.icet.clothify.component.tableCard;
 
 import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Supplier;
+import edu.icet.clothify.service.ServiceFactory;
+import edu.icet.clothify.service.custom.SupplierService;
+import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.SupplierUtil;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +17,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class SupplierTableCard {
     private SupplierTableCard(){}
@@ -91,13 +102,25 @@ public class SupplierTableCard {
         StackPane editPane = createIconButton("/img/edite.png",
                 16, 16,
                 24, 2,
-                ()->handleEdit(supplier));
+                ()-> {
+                    try {
+                        handleEdit(supplier);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
         // Delete Button
         StackPane deletePane = createIconButton("/img/delete.png",
                 16, 16,
                 24, 2,
-                ()->handleDelete(supplier));
+                ()-> {
+                    try {
+                        handleDelete(supplier);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 
 
         actionBox.getChildren().addAll(editPane, deletePane);
@@ -133,14 +156,19 @@ public class SupplierTableCard {
         return pane;
     }
 
-    private void handleEdit(Supplier supplier) {
-        // Edit logic
-        System.out.println("Editing supplier: " + supplier.getSupplierId());
+    private void handleEdit(Supplier supplier) throws IOException {
+        Object load = FXMLLoader.load(getClass().getResource("/view/update/updateSupplier.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene((Parent) load));
+        stage.show();
+        SupplierUtil.getInstance().setValue(supplier);
     }
 
-    private void handleDelete(Supplier supplier) {
-        // Delete logic
-        System.out.println("Deleting supplier: " + supplier.getSupplierId());
+    private void handleDelete(Supplier supplier) throws SQLException {
+        SupplierService supplierService = ServiceFactory.getInstance().getService(ServiceType.SUPPLIER);
+        boolean b = supplierService.deleteSupplier(supplier.getSupplierId());
+        SupplierUtil.getInstance().loadContainer();
+        System.out.println(b?"deleted":"error");
     }
 }
 

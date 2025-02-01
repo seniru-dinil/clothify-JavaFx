@@ -67,7 +67,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="581.0" spacing="3.0">
                            <children>
                               <Label text="Supplier Name" textFill="#d1d5db" />
-                              <TextField fx:id="txtName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -89,7 +89,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
                            <children>
                               <Label text="Email Address" textFill="#d1d5db" />
-                              <TextField fx:id="txtEmail" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtEmail" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -99,7 +99,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
                            <children>
                               <Label text="Mobile Number" textFill="#d1d5db" />
-                              <TextField fx:id="txtMobile" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtMobile" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -123,7 +123,7 @@
                               <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="581.0" spacing="3.0">
                                  <children>
                                     <Label text="Supplier Address" textFill="#d1d5db" />
-                                    <TextField fx:id="txtAddress" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" />
+                                    <TextField fx:id="txtAddress" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                                  </children>
                               </VBox>
                            </children>

@@ -5,10 +5,15 @@ import com.jfoenix.controls.JFXComboBox;
 import edu.icet.clothify.component.ProductCardFactory;
 import edu.icet.clothify.component.ShoppingCartService;
 import edu.icet.clothify.dto.Product;
+import edu.icet.clothify.service.ServiceFactory;
+import edu.icet.clothify.service.custom.ProductService;
+import edu.icet.clothify.util.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -16,13 +21,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class PlaceOrderFormController implements Initializable {
 
     public VBox cartContainer;
+    public ScrollPane scrollPane;
     @FXML
     private JFXButton btnAddToCart;
 
@@ -65,14 +71,16 @@ public class PlaceOrderFormController implements Initializable {
     @FXML
     private Label txtStock;
 
-    @FXML
-    private HBox txtTesting;
+
+
 
     @FXML
     private Label txtTotal;
 
     @FXML
     private VBox vboxContainer;
+
+    
 
     @FXML
     void btnCompleOrderOnAction(ActionEvent event) {
@@ -82,20 +90,37 @@ public class PlaceOrderFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ShoppingCartService.getInstance().initializeCartContainer(cartContainer);
-        loadProductCard();
+        scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        try {
+            loadProductCard();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void loadProductCard() {
+    public void loadProductCard() throws SQLException {
         List<Product> products = getProducts();
-        products.forEach(product -> {
+        HBox currentHBox = createNewHBox(); // Create first HBox
+        for (Product product : products) {
+            // Create product card
             VBox productCard = ProductCardFactory.getInstance().createProductCard(product);
-            txtTesting.getChildren().add(productCard);
-        });
+            currentHBox.getChildren().add(productCard);
+            if (currentHBox.getChildren().size() >= 3) {
+                currentHBox = createNewHBox();
+            }
+        }
     }
 
-    public List<Product> getProducts() {
-        List<Product> productList = new ArrayList<>();
+    private HBox createNewHBox() {
+        HBox newHBox = new HBox();
+        newHBox.setSpacing(10);  // Adjust spacing between cards
+        newHBox.setAlignment(Pos.CENTER);
+        vboxContainer.getChildren().add(newHBox);
+        return newHBox;
+    }
 
-        return productList;
+    public List<Product> getProducts()  {
+        ProductService service = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+        return service.getAllProducts();
     }
 }
