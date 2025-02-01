@@ -2,8 +2,13 @@ package edu.icet.clothify.component.tableCard;
 
 import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Product;
+import edu.icet.clothify.service.ServiceFactory;
+import edu.icet.clothify.service.custom.ProductService;
+import edu.icet.clothify.util.ProductUtil;
+import edu.icet.clothify.util.ServiceType;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -30,12 +35,39 @@ public class ProductTableCard {
         Label txtName = createLabel(104.0, 12.0, 145.0, 18.0, product.getProductName());
 
         // Quantity Label (assuming txtDate represents quantity)
-        Label txtQuantity = createLabel(528.0, 12.0, 57.0, 18.0, String.valueOf(product.getProductStock()));
+        TextField txtQuantity = createTextField(528.0, 10.0, 62.0, 18.0, String.valueOf(product.getProductStock()));
         txtQuantity.setAlignment(Pos.CENTER);
+        txtQuantity.setOnAction(e->{
+            ProductService service=ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+            service.updateProduct(new Product(
+                    product.getProductID(),
+                    product.getProductName(),
+                    product.getProductPrice(),
+                    Integer.parseInt(txtQuantity.getText()),
+                    product.getProductImagePath(),
+                    product.getProductCategoryID(),
+                    product.getProductSupplierID(),
+                    product.getProductDescription()
+            ));
+        });
 
         // Price Label
-        Label txtPrice = createLabel(408.0, 12.0, 58.0, 18.0, String.format("$%.2f", product.getProductPrice()));
+        TextField txtPrice = createTextField(408.0, 10.0, 62.0, 18.0, String.format("%.2f", product.getProductPrice()));
         txtPrice.setAlignment(Pos.CENTER_RIGHT);
+        txtPrice.setOnAction(e->{
+            ProductService service=ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+            service.updateProduct(new Product(
+                    product.getProductID(),
+                    product.getProductName(),
+                    Double.parseDouble(txtPrice.getText()),
+                    product.getProductStock(),
+                    product.getProductImagePath(),
+                    product.getProductCategoryID(),
+                    product.getProductSupplierID(),
+                    product.getProductDescription()
+            ));
+        });
+
 
         // Category Image
         StackPane imagePane = createCategoryImagePane(product.getProductCategoryID());
@@ -44,7 +76,7 @@ public class ProductTableCard {
         Label txtAvailable = createStockLabel(product.getProductStock());
 
         // Action buttons container
-        HBox buttonBox = createButtonHBox(product);
+        HBox buttonBox = createButtonHBox(product,txtQuantity,txtPrice);
 
         anchorPane.getChildren().addAll(txtID, txtName, txtQuantity, txtPrice, imagePane, txtAvailable, buttonBox);
         return anchorPane;
@@ -57,6 +89,15 @@ public class ProductTableCard {
         label.setPrefSize(width, height);
         label.setTextFill(Color.web("#d1d5db"));
         return label;
+    }
+    private TextField createTextField(double x, double y, double width, double height, String text) {
+        TextField textField = new TextField(text);
+        textField.setLayoutX(x);
+        textField.setLayoutY(y);
+        textField.setPrefSize(width, height);
+        textField.setStyle("-fx-background-color:#1F2937; -fx-text-fill: #d1d5db;");
+        textField.setEditable(false);
+        return textField;
     }
 
     private StackPane createCategoryImagePane(int categoryId) {
@@ -110,7 +151,7 @@ public class ProductTableCard {
         return label;
     }
 
-    private HBox createButtonHBox(Product product) {
+    private HBox createButtonHBox(Product product,TextField txtQuantity,TextField txtPrice) {
         HBox hbox = new HBox();
         hbox.setLayoutX(792.0);
         hbox.setLayoutY(8.0);
@@ -123,7 +164,7 @@ public class ProductTableCard {
                 "/img/edite.png",
                 16.0, 16.0,
                 24.0, 2.0,
-                ()->handleEdite(product)
+                ()->handleEdite(product,txtQuantity,txtPrice)
         );
 
         // Delete Button
@@ -163,9 +204,12 @@ public class ProductTableCard {
     }
 
     public void handleDelete(Product product){
-        System.out.println(product.getProductID()+" deleted");
+        ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+        productService.deleteProduct(product.getProductID());
+        ProductUtil.getInstance().getData();
     }
-    public void handleEdite(Product product){
-        System.out.println(product.getProductID()+" edited");
+    public void handleEdite(Product product,TextField txtQuantity,TextField txtPrice){
+        txtQuantity.setEditable(true);
+        txtPrice.setEditable(true);
     }
 }

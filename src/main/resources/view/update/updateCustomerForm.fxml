@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="677.0" prefWidth="832.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.update.UpdateCustomerFormController">
+   <children>
+      <HBox alignment="CENTER" layoutY="7.0" prefHeight="78.0" prefWidth="832.0" spacing="20.0">
+         <children>
+            <Group>
+               <children>
+                  <StackPane prefHeight="44.0" prefWidth="39.0">
+                     <children>
+                        <Circle fill="#1f2937" radius="25.0" stroke="#1f2937" strokeType="INSIDE" />
+                        <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/cust.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </Group>
+            <VBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="243.0">
+               <children>
+                  <Label text="Update Customer" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Enter customer details to create a new profile" textFill="#6b7280" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="643.0" prefHeight="34.0" prefWidth="832.0">
+         <children>
+            <Label text="© 2025 Clothify. All rights reserved." textFill="#6b7280" />
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutY="85.0" prefHeight="565.0" prefWidth="832.0" spacing="20.0">
+         <padding>
+            <Insets left="150.0" right="150.0" top="20.0" />
+         </padding>
+         <children>
+            <VBox prefHeight="117.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937;">
+               <children>
+                  <Label prefHeight="16.0" prefWidth="142.0" text="Basic Information" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="78.0" prefWidth="501.0" spacing="20.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
+                           <children>
+                              <Label text="First Name" textFill="#d1d5db" />
+                              <TextField fx:id="txtFirstName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
+                           <children>
+                              <Label text="Last Name" textFill="#d1d5db" />
+                              <TextField fx:id="txtLastName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="160.0" layoutY="30.0" prefHeight="198.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937;">
+               <children>
+                  <Label text="Contact Information" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="78.0" prefWidth="501.0" spacing="20.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
+                           <children>
+                              <Label text="Email Address" textFill="#d1d5db" />
+                              <TextField fx:id="txtEmail" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="25.0" layoutY="62.0" prefHeight="78.0" prefWidth="501.0" spacing="20.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
+                           <children>
+                              <Label text="Mobile Number" textFill="#d1d5db" />
+                              <TextField fx:id="txtMobile" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="117.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937;">
+               <children>
+                  <Label prefHeight="16.0" prefWidth="142.0" text="Living Address" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="78.0" prefWidth="501.0" spacing="20.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
+                           <children>
+                              <Label text="City" textFill="#d1d5db" />
+                              <TextField fx:id="txtAddress" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
+                           <children>
+                              <Label text="id" textFill="#d1d5db" />
+                              <TextField fx:id="txtId" editable="false" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="531.0" spacing="15.0">
+               <children>
+                  <JFXButton onAction="#btnCancelOnAction" prefHeight="0.0" prefWidth="67.0" style="-fx-background-color: #374151;" text="Cancel" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </JFXButton>
+                  <JFXButton onAction="#btnSaveOnAction" prefHeight="0.0" prefWidth="110.0" style="-fx-background-color: #2563EB;" text="Save Changes" textFill="WHITE">
+                     <padding>
+                        <Insets bottom="7.0" top="7.0" />
+                     </padding>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

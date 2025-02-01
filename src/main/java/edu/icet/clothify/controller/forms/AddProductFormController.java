@@ -1,8 +1,18 @@
 package edu.icet.clothify.controller.forms;
 
 import com.jfoenix.controls.JFXComboBox;
+import edu.icet.clothify.dto.Product;
+import edu.icet.clothify.dto.Supplier;
+import edu.icet.clothify.service.ServiceFactory;
+import edu.icet.clothify.service.custom.ProductService;
+import edu.icet.clothify.service.custom.SupplierService;
+import edu.icet.clothify.util.ProductUtil;
+import edu.icet.clothify.util.ServiceType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,14 +21,17 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class AddProductFormController {
+public class AddProductFormController implements Initializable {
 
     @FXML
-    private JFXComboBox<?> cmbCategory;
+    private JFXComboBox<String> cmbCategory;
 
     @FXML
-    private JFXComboBox<?> cmbSupplier;
+    private JFXComboBox<String> cmbSupplier;
 
     @FXML
     private ImageView imgBox;
@@ -31,6 +44,10 @@ public class AddProductFormController {
 
     @FXML
     private TextField txtStock;
+
+    private String imagePath;
+
+
 
     @FXML
     void btnBrowseOnAction(ActionEvent event) {
@@ -48,7 +65,7 @@ public class AddProductFormController {
         File file = fileChooser.showOpenDialog(window);
 
         if (file != null) {
-            // Load and display the image
+            imagePath = file.toURI().toString();
             Image image = new Image(file.toURI().toString());
             imgBox.setImage(image);
         }
@@ -56,14 +73,43 @@ public class AddProductFormController {
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
-        Node source = (Node) event.getSource();
-        Stage window = (Stage) source.getScene().getWindow();
-        window.close();
+        closeWindow(event);
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-
+        ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+        productService.addProduct(new Product(
+                0,
+                txtProductName.getText(),
+                Double.parseDouble(txtPrice.getText()),
+                Integer.parseInt(txtStock.getText()),
+                imagePath,
+                3,
+                Integer.parseInt(cmbSupplier.getSelectionModel().getSelectedItem().split(" ")[1])
+                ,
+                ""
+        ));
+        ProductUtil.getInstance().getData();
+        closeWindow(event);
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setValuesToCombos();
+    }
+
+    private void setValuesToCombos(){
+        SupplierService supplierService = ServiceFactory.getInstance().getService(ServiceType.SUPPLIER);
+        List<Supplier> allSuppliers = supplierService.getAllSuppliers();
+        ObservableList<String> objects = FXCollections.observableArrayList();
+        allSuppliers.forEach(supplier -> objects.add(supplier.getSupplierName()+" "+supplier.getSupplierId()));
+        cmbSupplier.setItems(objects);
+    }
+
+    private void closeWindow(ActionEvent event){
+        Node source = (Node) event.getSource();
+        Stage window = (Stage) source.getScene().getWindow();
+        window.close();
+    }
 }

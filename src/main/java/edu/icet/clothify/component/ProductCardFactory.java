@@ -35,7 +35,7 @@ public class ProductCardFactory {
         imageView.setPreserveRatio(true);
         imageView.setPickOnBounds(true);
         try {
-            Image image = new Image("/img/"+product.getProductImagePath());
+            Image image = new Image(product.getProductImagePath());
             imageView.setImage(image);
         } catch (Exception e) {
 

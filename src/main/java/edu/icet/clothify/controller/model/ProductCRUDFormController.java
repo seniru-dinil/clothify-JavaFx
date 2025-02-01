@@ -1,12 +1,7 @@
 package edu.icet.clothify.controller.model;
 
 
-import edu.icet.clothify.component.tableCard.ProductTableCard;
-import edu.icet.clothify.dto.Product;
-import edu.icet.clothify.service.ServiceFactory;
-import edu.icet.clothify.service.SupperService;
-import edu.icet.clothify.service.custom.ProductService;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.ProductUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,9 +14,6 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ProductCRUDFormController implements Initializable {
@@ -32,19 +24,9 @@ public class ProductCRUDFormController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        getData();
-    }
-
-    public void getData() throws SQLException {
-        ProductService service = (ProductService) ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
-        List<Product> allProducts = service.getAllProducts();
-        populateProductContainer(allProducts);
-    }
-
-    public void populateProductContainer(List<Product> products) {
-        for (Product product : products) {
-            productContainer.getChildren().add(ProductTableCard.getInstance().createProductPane(product));
-        }
+        ProductUtil instance = ProductUtil.getInstance();
+        instance.initializeProductContainer(productContainer);
+        instance.getData();
     }
 
 
