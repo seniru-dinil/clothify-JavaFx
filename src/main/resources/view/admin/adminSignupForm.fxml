@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="586.0" prefWidth="912.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.admin.AdminLoginFormController">
+<AnchorPane prefHeight="586.0" prefWidth="912.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.admin.AdminSignupFormController">
    <children>
       <VBox alignment="CENTER" layoutY="-2.0" prefHeight="586.0" prefWidth="450.0" spacing="20.0" style="-fx-background-color: #1F2937;">
          <children>
@@ -64,7 +64,7 @@
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <TextField id="#inputFld" fx:id="inputFld" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                        <TextField id="#inputFld" fx:id="txtFirstName" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" stylesheets="@../../css/login/login.css">
                            <padding>
                               <Insets left="14.0" />
                            </padding>
@@ -78,7 +78,7 @@
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <TextField id="#inputFld" fx:id="inputFld1" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                        <TextField id="#inputFld" fx:id="txtLastName" prefHeight="36.0" prefWidth="93.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" stylesheets="@../../css/login/login.css">
                            <padding>
                               <Insets left="14.0" />
                            </padding>
@@ -97,7 +97,7 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField id="#inputFld" fx:id="inputFld2" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                  <TextField id="#inputFld" fx:id="txtEmail" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" stylesheets="@../../css/login/login.css">
                      <padding>
                         <Insets left="14.0" />
                      </padding>
@@ -114,7 +114,7 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField id="#inputFld" fx:id="inputFld21" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                  <TextField id="#inputFld" fx:id="txtPassword" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" stylesheets="@../../css/login/login.css">
                      <padding>
                         <Insets left="14.0" />
                      </padding>
@@ -128,14 +128,14 @@
                         <Font size="10.0" />
                      </font>
                   </Label>
-                  <TextField id="#inputFld" fx:id="inputFld211" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151;" stylesheets="@../../css/login/login.css">
+                  <TextField id="#inputFld" fx:id="txtConfirmPassword" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" stylesheets="@../../css/login/login.css">
                      <padding>
                         <Insets left="14.0" />
                      </padding>
                   </TextField>
                </children>
             </VBox>
-            <JFXButton prefHeight="34.0" prefWidth="366.0" style="-fx-background-color: #4F46E5;" text="Create Account" textFill="WHITE">
+            <JFXButton onAction="#btnCreateAccountOnAction" prefHeight="34.0" prefWidth="366.0" style="-fx-background-color: #4F46E5;" text="Create Account" textFill="WHITE">
                <padding>
                   <Insets bottom="8.0" top="8.0" />
                </padding>
@@ -146,7 +146,7 @@
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="326.0" spacing="5.0">
                <children>
                   <Label opacity="0.57" text="Already have an account?" textFill="WHITE" />
-                  <Label text="Sign in" textFill="#818cf8" />
+                  <Label accessibleRole="BUTTON" onMouseClicked="#btnSigninOnAction" text="Sign in" textFill="#818cf8" />
                </children>
             </HBox>
          </children>

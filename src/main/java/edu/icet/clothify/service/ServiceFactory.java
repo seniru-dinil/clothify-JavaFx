@@ -1,9 +1,6 @@
 package edu.icet.clothify.service;
 
-import edu.icet.clothify.service.custom.impl.CustomerServiceImpl;
-import edu.icet.clothify.service.custom.impl.EmployeeServiceImpl;
-import edu.icet.clothify.service.custom.impl.ProductServiceImpl;
-import edu.icet.clothify.service.custom.impl.SupplierServiceImpl;
+import edu.icet.clothify.service.custom.impl.*;
 import edu.icet.clothify.util.ServiceType;
 
 public class ServiceFactory {
@@ -14,12 +11,12 @@ public class ServiceFactory {
     }
 
     public <T extends SupperService>T getService(ServiceType type){
-            switch(type){
-                case CUSTOMER :return (T) new CustomerServiceImpl();
-                case PRODUCT: return (T) new ProductServiceImpl();
-                case EMPLOYEE:return (T) new EmployeeServiceImpl();
-                case SUPPLIER:return (T) new SupplierServiceImpl();
-            }
-            return null;
+        return switch (type) {
+            case CUSTOMER -> (T) new CustomerServiceImpl();
+            case PRODUCT -> (T) new ProductServiceImpl();
+            case EMPLOYEE -> (T) new EmployeeServiceImpl();
+            case SUPPLIER -> (T) new SupplierServiceImpl();
+            case ADMIN -> (T) new AdminServiceImpl();
+        };
     }
 }
