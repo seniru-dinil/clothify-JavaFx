@@ -85,4 +85,52 @@ public class ProductDaoImpl implements ProductDao {
         tx.commit();
         return productEntities;
     }
+
+    @Override
+    public List<ProductEntity> getProductsByCategory(Integer productType) {
+        try (Session session = HibernateUtil.getSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query<ProductEntity> query = session.createQuery(
+                    "FROM ProductEntity p WHERE p.productCategoryID = :categoryId", ProductEntity.class);
+            query.setParameter("categoryId", productType);
+
+            List<ProductEntity> resultList = query.getResultList();
+            transaction.commit();
+            return resultList;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<ProductEntity> getProductsByStatus(Integer stock) {
+        try (Session session = HibernateUtil.getSession()) {
+            Transaction transaction = session.beginTransaction();
+            try {
+                Query<ProductEntity> query = session.createQuery(
+                        "FROM ProductEntity p WHERE p.productStock>0", ProductEntity.class);
+                List<ProductEntity> resultList = query.getResultList();
+                transaction.commit();
+                return resultList;
+            } catch (Exception e) {
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public List<ProductEntity> getProductsByStatus() {
+        try (Session session = HibernateUtil.getSession()) {
+            Transaction transaction = session.beginTransaction();
+            try {
+                Query<ProductEntity> query = session.createQuery(
+                        "FROM ProductEntity p WHERE p.productStock<=0", ProductEntity.class);
+                List<ProductEntity> resultList = query.getResultList();
+                transaction.commit();
+                return resultList;
+            } catch (Exception e) {
+                return null;
+            }
+        }
+    }
 }

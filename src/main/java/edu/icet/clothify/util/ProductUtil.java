@@ -23,21 +23,39 @@ public class ProductUtil {
     }
 
 
-    public void initializeProductContainer(VBox productContainer){
+    public void initializeProductContainer(VBox productContainer) {
         this.productContainer = productContainer;
     }
 
-    public void getData() {
-        productContainer.getChildren().clear();
-        ProductService service =ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+    public void getAllData() {
+        ProductService service = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
         List<Product> allProducts = service.getAllProducts();
         populateProductContainer(allProducts);
     }
 
     public void populateProductContainer(List<Product> products) {
+        productContainer.getChildren().clear();
         for (Product product : products) {
             productContainer.getChildren().add(ProductTableCard.getInstance().createProductPane(product));
         }
+    }
+
+    public void getCategoryData(String categoryType) {
+        ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+        if (categoryType.equals("kids")) {
+            populateProductContainer(productService.getProductsByCategory(1));
+        } else if (categoryType.equals("gents")){
+            populateProductContainer(productService.getProductsByCategory(2));
+        } else if(categoryType.equals("ladies")){
+            populateProductContainer(productService.getProductsByCategory(3));
+        }else{
+            populateProductContainer(productService.getAllProducts());
+        }
+    }
+
+    public void getProductsByStatus(String status){
+        ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+         populateProductContainer(productService.getProductsByStatus(status));
     }
 
 }

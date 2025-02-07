@@ -89,7 +89,7 @@ public class AddProductFormController implements Initializable {
                 ,
                 ""
         ));
-        ProductUtil.getInstance().getData();
+        ProductUtil.getInstance().getAllData();
         closeWindow(event);
     }
 

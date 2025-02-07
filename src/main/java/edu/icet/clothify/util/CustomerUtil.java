@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.modelmapper.ModelMapper;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,10 +49,10 @@ public class CustomerUtil {
         this.container=container;
     }
 
-    public void reloadContainer() throws SQLException {
+    public void reloadContainer()  {
         CustomerService customerService = (CustomerServiceImpl) ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
         List<CustomerEntity> allCustomer = customerService.getAllCustomer();
-        List<Customer> customers = new ArrayList<Customer>();
+        List<Customer> customers = new ArrayList<>();
         allCustomer.forEach(c-> customers.add(new ModelMapper().map(c,Customer.class)));
         populateCustomerCards(customers);
     }

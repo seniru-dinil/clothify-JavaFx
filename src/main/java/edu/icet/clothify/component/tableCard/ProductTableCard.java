@@ -206,7 +206,7 @@ public class ProductTableCard {
     public void handleDelete(Product product){
         ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
         productService.deleteProduct(product.getProductID());
-        ProductUtil.getInstance().getData();
+        ProductUtil.getInstance().getAllData();
     }
     public void handleEdite(Product product,TextField txtQuantity,TextField txtPrice){
         txtQuantity.setEditable(true);

@@ -18,14 +18,14 @@ public class ProductServiceImpl implements ProductService {
         ProductDao dao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
         List<ProductEntity> all = dao.getAll();
         List<Product> products = new ArrayList<>();
-        all.forEach(product->products.add((new ModelMapper().map(product,Product.class))));
+        all.forEach(product -> products.add((new ModelMapper().map(product, Product.class))));
         return products;
     }
 
     @Override
     public boolean addProduct(Product product) {
         ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
-        return productDao.save(new ModelMapper().map(product,ProductEntity.class));
+        return productDao.save(new ModelMapper().map(product, ProductEntity.class));
     }
 
     @Override
@@ -42,7 +42,30 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean updateProduct(Product product) {
         ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
-        return productDao.update(new ModelMapper().map(product,ProductEntity.class));
+        return productDao.update(new ModelMapper().map(product, ProductEntity.class));
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(Integer productType) {
+        ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+        List<ProductEntity> productsByCategory = productDao.getProductsByCategory(productType);
+        List<Product> products = new ArrayList<>();
+        productsByCategory.forEach(p -> products.add(new ModelMapper().map(p, Product.class)));
+        return products;
+    }
+
+    @Override
+    public List<Product> getProductsByStatus(String status) {
+        ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+        List<Product> productList=new ArrayList<>();
+        if (status.equals("in stock")){
+            List<ProductEntity> productsByStatus = productDao.getProductsByStatus(0);
+            productsByStatus.forEach(p->productList.add(new ModelMapper().map(p,Product.class)));
+        }else {
+            List<ProductEntity> productsByStatus = productDao.getProductsByStatus();
+            productsByStatus.forEach(p->productList.add(new ModelMapper().map(p,Product.class)));
+        }
+        return productList;
     }
 
 }

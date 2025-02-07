@@ -1,7 +1,10 @@
 package edu.icet.clothify.controller.model;
 
 
+import com.jfoenix.controls.JFXComboBox;
 import edu.icet.clothify.util.ProductUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,15 +23,40 @@ public class ProductCRUDFormController implements Initializable {
 
 
     public VBox productContainer;
+    public JFXComboBox cmbCategories;
+    public JFXComboBox cmbStatus;
 
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ProductUtil instance = ProductUtil.getInstance();
         instance.initializeProductContainer(productContainer);
-        instance.getData();
+        instance.getAllData();
+        setValuesToCombos();
+        cmbCategories.setOnAction(e -> {
+            ProductUtil.getInstance().getCategoryData(cmbCategories.getSelectionModel().getSelectedItem().toString());
+        });
+        cmbStatus.setOnAction(e -> {
+            ProductUtil.getInstance().getProductsByStatus(cmbStatus.getSelectionModel().getSelectedItem().toString());
+        });
     }
 
+    public void setValuesToCombos(){
+        ObservableList<String> categories = FXCollections.observableArrayList();
+        categories.add("kids");
+        categories.add("gents");
+        categories.add("ladies");
+        categories.add("all");
+        cmbCategories.setItems(categories);
+        cmbCategories.setOnAction(e -> {
+
+        });
+
+        ObservableList<String> status = FXCollections.observableArrayList();
+        status.add("in stock");
+        status.add("out of stock");
+        cmbStatus.setItems(status);
+    }
 
     public void btnAddProductOnAction(ActionEvent actionEvent) throws IOException {
         Node load = (Node) FXMLLoader.load(getClass().getResource("/view/add.forms/addProductForm.fxml"));
