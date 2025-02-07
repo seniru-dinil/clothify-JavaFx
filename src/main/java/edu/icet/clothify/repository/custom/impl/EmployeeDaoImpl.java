@@ -2,6 +2,7 @@ package edu.icet.clothify.repository.custom.impl;
 
 
 import edu.icet.clothify.entity.AdminEntity;
+import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.entity.EmployeeEntity;
 import edu.icet.clothify.repository.custom.EmployeeDao;
 import edu.icet.clothify.util.HibernateUtil;
@@ -85,5 +86,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
         List<EmployeeEntity> employeeEntities = query.list();
         tx.commit();
         return employeeEntities;
+    }
+
+    @Override
+    public List<EmployeeEntity> getEmployeesByName(String name) {
+        try(Session session = HibernateUtil.getSession()){
+            Transaction transaction = session.beginTransaction();
+            try{
+                String hql = "FROM EmployeeEntity e WHERE LOWER(e.employeeFirstName) LIKE LOWER(CONCAT('%', :name, '%'))";
+                Query<EmployeeEntity> query = session.createQuery(hql, EmployeeEntity.class);
+                query.setParameter("name", name);
+                return query.list();
+            }catch (Exception e){
+                return null;
+            }
+        }
     }
 }

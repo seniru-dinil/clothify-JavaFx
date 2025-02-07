@@ -79,7 +79,7 @@ public class SupplierUtil {
     }
 
 
-    private void loadSuppliers(List<Supplier> suppliers) {
+    public void loadSuppliers(List<Supplier> suppliers) {
         supplierContainer.getChildren().clear();
         for (Supplier supplier : suppliers) {
             AnchorPane card = SupplierTableCard.getInstance().createSupplierCard(

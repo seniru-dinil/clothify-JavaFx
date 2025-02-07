@@ -45,4 +45,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeDao dao = DaoFactory.getInstance().getDao(DaoType.EMPLOYEE);
         return dao.update(new ModelMapper().map(employee, EmployeeEntity.class));
     }
+
+    @Override
+    public List<Employee> getEmployeesByName(String name) {
+        EmployeeDao employeeDao= DaoFactory.getInstance().getDao(DaoType.EMPLOYEE);
+        List<EmployeeEntity> employeesByName = employeeDao.getEmployeesByName(name);
+        List<Employee> employees = new ArrayList<>();
+        employeesByName.forEach(e->employees.add(new ModelMapper().map(e,Employee.class)));
+        return employees;
+    }
 }

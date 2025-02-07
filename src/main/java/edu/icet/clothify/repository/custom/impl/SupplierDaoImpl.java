@@ -1,5 +1,6 @@
 package edu.icet.clothify.repository.custom.impl;
 
+import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.entity.SupplierEntity;
 import edu.icet.clothify.repository.custom.SupplierDao;
 import edu.icet.clothify.util.HibernateUtil;
@@ -82,5 +83,19 @@ public class SupplierDaoImpl implements SupplierDao {
         List<SupplierEntity> supplierEntities = query.list();
         tx.commit();
         return supplierEntities;
+    }
+
+    public List<SupplierEntity> getSuppliersByName(String name){
+        try(Session session= HibernateUtil.getSession()){
+            try{
+                Transaction transaction = session.beginTransaction();
+                String hql = "FROM SupplierEntity s WHERE LOWER(s.supplierName) LIKE LOWER(CONCAT('%', :name, '%'))";
+                Query<SupplierEntity> query = session.createQuery(hql, SupplierEntity.class);
+                query.setParameter("name", name);
+                return query.list();
+            }catch (Exception e){
+                return  null;
+            }
+        }
     }
 }

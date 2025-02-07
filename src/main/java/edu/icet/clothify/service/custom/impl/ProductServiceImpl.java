@@ -68,4 +68,13 @@ public class ProductServiceImpl implements ProductService {
         return productList;
     }
 
+    @Override
+    public List<Product> getProductsByName(String name) {
+        ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+        List<ProductEntity> productsByName = productDao.getProductsByName(name);
+        List<Product> products = new ArrayList<>();
+        productsByName.forEach(p->products.add(new ModelMapper().map(p,Product.class)));
+        return products;
+    }
+
 }

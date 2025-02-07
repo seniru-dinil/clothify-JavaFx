@@ -44,4 +44,13 @@ public class SupplierServiceImpl implements SupplierService {
         SupplierDao supplierDao = DaoFactory.getInstance().getDao(DaoType.SUPPLIER);
         return supplierDao.update(new ModelMapper().map(supplier,SupplierEntity.class));
     }
+
+    @Override
+    public List<Supplier> getSuppliersByName(String name) {
+        SupplierDao supplierDao = DaoFactory.getInstance().getDao(DaoType.SUPPLIER);
+        List<SupplierEntity> suppliersByName = supplierDao.getSuppliersByName(name);
+        List<Supplier> list = new ArrayList<>();
+        suppliersByName.forEach(s->list.add(new ModelMapper().map(s,Supplier.class)));
+        return list;
+    }
 }

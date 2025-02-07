@@ -12,4 +12,5 @@ public interface CustomerService extends SupperService {
     boolean deleteCustomer(Integer id);
     boolean updateCustomer(Customer customer);
     CustomerEntity getCustomer(String id);
+     List<Customer> getCustomersByName(String name);
 }

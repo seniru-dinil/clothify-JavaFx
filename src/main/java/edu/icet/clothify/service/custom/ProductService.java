@@ -16,4 +16,6 @@ public interface ProductService extends SupperService {
     boolean updateProduct(Product product);
     List<Product> getProductsByCategory(Integer productType);
      List<Product> getProductsByStatus(String status);
+     List<Product> getProductsByName(String status);
+
 }

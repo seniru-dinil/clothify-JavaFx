@@ -11,4 +11,5 @@ public interface EmployeeService extends SupperService {
     boolean deleteEmployee(Integer id);
     Employee getEmployee(String id);
     boolean updateEmployee(Employee id);
+    List<Employee> getEmployeesByName(String name);
 }

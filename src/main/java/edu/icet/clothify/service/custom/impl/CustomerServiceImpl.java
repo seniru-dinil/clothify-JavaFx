@@ -9,6 +9,7 @@ import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.util.DaoType;
 import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -42,5 +43,14 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerEntity getCustomer(String id) {
         CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
         return customerDao.get(id);
+    }
+
+    @Override
+    public List<Customer> getCustomersByName(String name) {
+        CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
+        List<CustomerEntity> customersByName = customerDao.getCustomersByName(name);
+        List<Customer> customers = new ArrayList<>();
+        customersByName.forEach(c->customers.add(new ModelMapper().map(c,Customer.class)));
+        return customers;
     }
 }

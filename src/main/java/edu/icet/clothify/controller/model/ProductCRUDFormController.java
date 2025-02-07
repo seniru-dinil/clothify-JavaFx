@@ -2,7 +2,11 @@ package edu.icet.clothify.controller.model;
 
 
 import com.jfoenix.controls.JFXComboBox;
+import edu.icet.clothify.dto.Product;
+import edu.icet.clothify.service.ServiceFactory;
+import edu.icet.clothify.service.custom.ProductService;
 import edu.icet.clothify.util.ProductUtil;
+import edu.icet.clothify.util.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,12 +15,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ProductCRUDFormController implements Initializable {
@@ -25,6 +32,7 @@ public class ProductCRUDFormController implements Initializable {
     public VBox productContainer;
     public JFXComboBox cmbCategories;
     public JFXComboBox cmbStatus;
+    public TextField searchBar;
 
     @SneakyThrows
     @Override
@@ -63,5 +71,12 @@ public class ProductCRUDFormController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene((Parent) load));
         stage.show();
+    }
+
+    public void searchBarOnAction(KeyEvent keyEvent) {
+        ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+        List<Product> productsByName = productService.getProductsByName(searchBar.getText());
+        System.out.println(productsByName);
+        ProductUtil.getInstance().populateProductContainer(productsByName);
     }
 }

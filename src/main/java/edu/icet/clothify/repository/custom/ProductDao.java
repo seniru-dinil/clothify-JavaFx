@@ -11,4 +11,5 @@ public interface ProductDao extends CrudDao<ProductEntity> {
     List<ProductEntity> getProductsByCategory(Integer productType);
      List<ProductEntity> getProductsByStatus(Integer stock);
      List<ProductEntity> getProductsByStatus();
+    List<ProductEntity> getProductsByName(String status);
 }

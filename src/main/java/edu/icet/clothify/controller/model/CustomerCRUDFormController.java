@@ -1,7 +1,7 @@
 package edu.icet.clothify.controller.model;
 
 
-import edu.icet.clothify.entity.CustomerEntity;
+import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.util.CustomerUtil;
@@ -20,6 +20,7 @@ import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CustomerCRUDFormController implements Initializable {
@@ -45,7 +46,7 @@ public class CustomerCRUDFormController implements Initializable {
 
     public void txtSeachCustomer(KeyEvent keyEvent) {
         CustomerService customerService = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
-        CustomerEntity customer = customerService.getCustomer(txtSearchCustomerBar.getText());
-        System.out.println(customer);
+        List<Customer> customersByName = customerService.getCustomersByName(txtSearchCustomerBar.getText());
+        CustomerUtil.getInstance().populateCustomerCards(customersByName);
     }
 }

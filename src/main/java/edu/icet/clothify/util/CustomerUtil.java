@@ -56,7 +56,7 @@ public class CustomerUtil {
         allCustomer.forEach(c-> customers.add(new ModelMapper().map(c,Customer.class)));
         populateCustomerCards(customers);
     }
-    private void populateCustomerCards(List<Customer> customers) {
+    public void populateCustomerCards(List<Customer> customers) {
         container.getChildren().clear();
         for (Customer customer : customers) {
             AnchorPane customerPane = CustomerTableCard.getInstance().createCustomerPane(customer);

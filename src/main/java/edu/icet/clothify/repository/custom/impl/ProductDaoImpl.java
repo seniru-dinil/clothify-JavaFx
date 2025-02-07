@@ -1,7 +1,9 @@
 package edu.icet.clothify.repository.custom.impl;
 
 
+import edu.icet.clothify.dto.Product;
 import edu.icet.clothify.entity.ProductEntity;
+import edu.icet.clothify.entity.SupplierEntity;
 import edu.icet.clothify.repository.custom.ProductDao;
 import edu.icet.clothify.util.HibernateUtil;
 import org.hibernate.Session;
@@ -130,6 +132,21 @@ public class ProductDaoImpl implements ProductDao {
                 return resultList;
             } catch (Exception e) {
                 return null;
+            }
+        }
+    }
+
+    @Override
+    public List<ProductEntity> getProductsByName(String name) {
+        try(Session session= HibernateUtil.getSession()){
+            try{
+                Transaction transaction = session.beginTransaction();
+                String hql = "FROM ProductEntity p WHERE LOWER(p.productName) LIKE LOWER(CONCAT('%', :name, '%'))";
+                Query<ProductEntity> query = session.createQuery(hql, ProductEntity.class);
+                query.setParameter("name", name);
+                return query.list();
+            }catch (Exception e){
+                return  null;
             }
         }
     }

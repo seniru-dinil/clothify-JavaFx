@@ -44,7 +44,7 @@
                <children>
                   <StackPane alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="621.0" style="-fx-background-color: #374151;">
                      <children>
-                        <TextField prefHeight="38.0" prefWidth="586.0" promptText="Search Supplier" style="-fx-background-color: #374151;">
+                        <TextField fx:id="searchBar" onKeyTyped="#searchBarOnActoin" prefHeight="38.0" prefWidth="586.0" promptText="Search Supplier" style="-fx-background-color: #374151; -fx-text-fill: #d1d5db;">
                            <padding>
                               <Insets left="25.0" />
                            </padding>

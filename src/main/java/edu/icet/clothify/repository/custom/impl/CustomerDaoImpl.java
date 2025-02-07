@@ -56,6 +56,21 @@ public class CustomerDaoImpl implements CustomerDao {
         }
     }
 
+
+    public List<CustomerEntity> getCustomersByName(String name){
+        try (Session session = HibernateUtil.getSession()){
+            Transaction transaction = session.beginTransaction();
+            try{
+                String hql = "FROM CustomerEntity c WHERE LOWER(c.firstName) LIKE LOWER(CONCAT('%', :name, '%'))";
+                Query<CustomerEntity> query = session.createQuery(hql, CustomerEntity.class);
+                query.setParameter("name", name);
+                return query.list();
+            }catch (Exception e){
+                return null;
+            }
+        }
+    }
+
     @Override
     public boolean update(CustomerEntity customer) {
         try (Session session = HibernateUtil.getSession()) {

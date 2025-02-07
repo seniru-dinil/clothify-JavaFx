@@ -31,13 +31,13 @@ public class EmployeeUtil {
         loadEmployees();
     }
 
-    private void loadEmployees() throws SQLException {
+    private void loadEmployees() {
         EmployeeService employeeService = ServiceFactory.getInstance().getService(ServiceType.EMPLOYEE);
         List<Employee> allEmployees = employeeService.getAllEmployees();
         populateEmployeeCards(allEmployees);
     }
 
-    private void populateEmployeeCards(List<Employee> employees) {
+    public void populateEmployeeCards(List<Employee> employees) {
         employeeContainer.getChildren().clear();
         for (Employee employee : employees) {
             AnchorPane anchorPane = EmployeeTableCard.getInstance().createAnchorPane(employee);
