@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 public class Order {
-    private String orderId;
-    private String customerId;
+    private Integer orderId;
+    private Integer customerId;
     private Double orderTotal;
     private LocalDateTime orderDate;
 }

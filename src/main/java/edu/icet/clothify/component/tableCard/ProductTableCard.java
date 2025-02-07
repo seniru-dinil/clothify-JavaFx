@@ -28,13 +28,13 @@ public class ProductTableCard {
         anchorPane.setPrefSize(874, 42);
         anchorPane.setStyle("-fx-background-color: #1F2937;");
 
-        // ID Label
+
         Label txtID = createLabel(12.0, 12.0, 58.0, 18.0, String.valueOf(product.getProductID()));
 
-        // Name Label
+
         Label txtName = createLabel(104.0, 12.0, 145.0, 18.0, product.getProductName());
 
-        // Quantity Label (assuming txtDate represents quantity)
+
         TextField txtQuantity = createTextField(528.0, 10.0, 62.0, 18.0, String.valueOf(product.getProductStock()));
         txtQuantity.setAlignment(Pos.CENTER);
         txtQuantity.setOnAction(e->{
@@ -51,7 +51,7 @@ public class ProductTableCard {
             ));
         });
 
-        // Price Label
+
         TextField txtPrice = createTextField(408.0, 10.0, 62.0, 18.0, String.format("%.2f", product.getProductPrice()));
         txtPrice.setAlignment(Pos.CENTER_RIGHT);
         txtPrice.setOnAction(e->{
@@ -69,13 +69,13 @@ public class ProductTableCard {
         });
 
 
-        // Category Image
+
         StackPane imagePane = createCategoryImagePane(product.getProductCategoryID());
 
-        // Stock Status Label
+
         Label txtAvailable = createStockLabel(product.getProductStock());
 
-        // Action buttons container
+
         HBox buttonBox = createButtonHBox(product,txtQuantity,txtPrice);
 
         anchorPane.getChildren().addAll(txtID, txtName, txtQuantity, txtPrice, imagePane, txtAvailable, buttonBox);

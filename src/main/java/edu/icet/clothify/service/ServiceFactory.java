@@ -17,6 +17,8 @@ public class ServiceFactory {
             case EMPLOYEE -> (T) new EmployeeServiceImpl();
             case SUPPLIER -> (T) new SupplierServiceImpl();
             case ADMIN -> (T) new AdminServiceImpl();
+            case ORDER ->(T) new OrderServiceImpl();
+            case ORDER_DETAIL -> (T) new OrderDetailServiceImpl();
         };
     }
 }

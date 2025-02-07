@@ -52,7 +52,7 @@ public class AdminDaoImpl implements AdminDao {
         try (Session session = HibernateUtil.getSession()) {
             return session.createQuery("FROM AdminEntity WHERE email = :email", AdminEntity.class)
                     .setParameter("email", email)
-                    .uniqueResult(); // Retrieves a single result
+                    .uniqueResult();
         } catch (Exception e) {
             return null;
         }

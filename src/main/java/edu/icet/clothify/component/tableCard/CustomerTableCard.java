@@ -4,8 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
-import edu.icet.clothify.util.ServiceType;
 import edu.icet.clothify.util.CustomerUtil;
+import edu.icet.clothify.util.ServiceType;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -27,7 +27,8 @@ public class CustomerTableCard {
 
     private static CustomerTableCard instance;
 
-    private CustomerTableCard(){}
+    private CustomerTableCard() {
+    }
 
     public static CustomerTableCard getInstance() {
         return instance == null ? instance = new CustomerTableCard() : instance;
@@ -121,9 +122,8 @@ public class CustomerTableCard {
 
     public void handleDelete(Customer customer) throws SQLException {
         CustomerService service = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
-        boolean b = service.deleteCustomer(customer.getCustomerID());
-        System.out.println(b ? " deleted" : "not deleted");
-     CustomerUtil.getInstance().reloadContainer();
+        service.deleteCustomer(customer.getCustomerID());
+        CustomerUtil.getInstance().reloadContainer();
     }
 
     public void handleEdit(Customer customer) throws IOException {

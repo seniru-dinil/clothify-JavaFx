@@ -1,6 +1,7 @@
 package edu.icet.clothify.repository.custom.impl;
 
 
+import edu.icet.clothify.entity.AdminEntity;
 import edu.icet.clothify.entity.EmployeeEntity;
 import edu.icet.clothify.repository.custom.EmployeeDao;
 import edu.icet.clothify.util.HibernateUtil;
@@ -45,10 +46,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public EmployeeEntity get(String id) {
+    public EmployeeEntity get(String email) {
         try (Session session = HibernateUtil.getSession()) {
-            EmployeeEntity fetchedUser = session.get(EmployeeEntity.class,id);
-            return fetchedUser;
+            return session.createQuery("FROM EmployeeEntity WHERE email=:email", EmployeeEntity.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
         }catch (Exception e){
             return null;
         }
@@ -65,7 +67,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 user.setPassword(employeeEntity.getPassword());
                 user.setEmployeeFirstName(employeeEntity.getEmployeeFirstName());
                 user.setEmployeeLastName(employeeEntity.getEmployeeLastName());
-                session.update(user);
+                session.merge(user);
                 session.getTransaction().commit();
                 return true;
             }catch (Exception e){

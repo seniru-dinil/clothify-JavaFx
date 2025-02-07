@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Data
 @ToString
 @AllArgsConstructor
@@ -18,4 +20,10 @@ public class Product {
   private int productCategoryID;
   private int productSupplierID;
   private String productDescription;
+
+  @Override
+  public boolean equals(Object o) {
+    Product o1 = (Product) o;
+    return o1.getProductName().equals(this.productName);
+  }
 }

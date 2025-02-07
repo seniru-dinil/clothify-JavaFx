@@ -1,5 +1,6 @@
 package edu.icet.clothify.repository;
 
+import edu.icet.clothify.repository.custom.OrderDao;
 import edu.icet.clothify.repository.custom.impl.*;
 import edu.icet.clothify.util.DaoType;
 
@@ -16,6 +17,8 @@ public class DaoFactory {
             case EMPLOYEE -> (T) new EmployeeDaoImpl();
             case SUPPLIER -> (T) new SupplierDaoImpl();
             case ADMIN -> (T) new AdminDaoImpl();
+            case ORDER -> (T) new OrderDaoImpl();
+            case ORDER_DETAIL -> (T) new OrderDetailDaoImpl();
         };
     }
 }

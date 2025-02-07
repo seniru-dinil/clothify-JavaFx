@@ -1,6 +1,7 @@
 package edu.icet.clothify.component;
 
 import com.jfoenix.controls.JFXButton;
+import edu.icet.clothify.dto.CartHelper;
 import edu.icet.clothify.dto.Product;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class CartItemFactory {
@@ -22,7 +22,8 @@ public class CartItemFactory {
         return instance == null ? instance = new CartItemFactory() : instance;
     }
 
-    public HBox createCartItem(Product product) {
+    public HBox createCartItem(CartHelper helper) {
+        Product product = helper.getProduct();
         HBox cartItem = new HBox();
         cartItem.setAlignment(Pos.CENTER);
         cartItem.setPrefHeight(34.0);
@@ -38,6 +39,7 @@ public class CartItemFactory {
         // Quantity Spinner
         Spinner<Integer> spinner = new Spinner<>();
         spinner.setPrefSize(48, 26);
+        spinner.setStyle("-fx-background:transparent;");
 
         // Get unit price
         double unitPrice = product.getProductPrice();
@@ -47,12 +49,12 @@ public class CartItemFactory {
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
                         1,
                         Math.max(product.getProductStock(), 1),
-                        1
+                        helper.getQuantity()
                 );
         spinner.setValueFactory(valueFactory);
 
         // Price Label (initialize with quantity 1)
-        Label priceLabel = new Label(String.format("%.2f", unitPrice * 1));
+        Label priceLabel = new Label(String.format("%.2f", unitPrice * helper.getQuantity()));
         priceLabel.setAlignment(Pos.CENTER_RIGHT);
         priceLabel.setPrefSize(90, 20);
         priceLabel.setTextFill(javafx.scene.paint.Color.valueOf("#d1d5db"));
@@ -63,11 +65,14 @@ public class CartItemFactory {
         spinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             double totalPrice = unitPrice * newValue;
             priceLabel.setText(String.format("%.2f", totalPrice));
+            helper.setQuantity(newValue);
+            ShoppingCartService.getInstance().setTotal();
+            if (helper.getProduct().getProductStock()<=newValue || newValue<1){
+                spinner.getValueFactory().setValue(newValue);
+                helper.setQuantity(newValue);
+            }
 
             // Prevent going below 1
-            if(newValue < 1) {
-                spinner.getValueFactory().setValue(1);
-            }
         });
 
         // Delete Button
@@ -85,15 +90,11 @@ public class CartItemFactory {
             deleteButton.setGraphic(deleteIcon);
         } catch (Exception e) {
             deleteButton.setText("X");
-            System.err.println("Error loading delete icon: " + e.getMessage());
         }
 
         // Delete button action
         deleteButton.setOnAction(event -> {
-            System.out.println("Deleted product details:\n" + product);
-            HBox parent = (HBox) deleteButton.getParent().getParent();
-            VBox parent1 = (VBox) parent.getParent();
-            parent1.getChildren().remove(parent);
+            ShoppingCartService.getInstance().deleteFromCart(helper);
         });
 
         deletePane.getChildren().add(deleteButton);

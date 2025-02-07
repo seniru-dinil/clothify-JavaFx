@@ -4,18 +4,16 @@ package edu.icet.clothify.service.custom.impl;
 import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.repository.DaoFactory;
-import edu.icet.clothify.repository.SuperDao;
 import edu.icet.clothify.repository.custom.CustomerDao;
 import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.util.DaoType;
 import org.modelmapper.ModelMapper;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
     @Override
-    public List<CustomerEntity> getAllCustomer() throws SQLException {
+    public List<CustomerEntity> getAllCustomer() {
         CustomerDao dao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
         return dao.getAll();
     }
@@ -23,7 +21,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean addCustomer(Customer customer) {
         CustomerEntity map = new ModelMapper().map(customer, CustomerEntity.class);
-        System.out.println(map);
         CustomerDao dao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
         return dao.save(map);
     }
@@ -38,12 +35,12 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean updateCustomer(Customer customer) {
         CustomerDao dao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
-        boolean update = dao.update(new ModelMapper().map(customer, CustomerEntity.class));
-        return update;
+        return dao.update(new ModelMapper().map(customer, CustomerEntity.class));
     }
 
     @Override
     public CustomerEntity getCustomer(String id) {
-        return null;
+        CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
+        return customerDao.get(id);
     }
 }

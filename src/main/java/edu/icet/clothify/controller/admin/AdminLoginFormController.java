@@ -3,6 +3,7 @@ package edu.icet.clothify.controller.admin;
 import edu.icet.clothify.dto.Admin;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
+import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.PasswordUtil;
 import edu.icet.clothify.util.ServiceType;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -35,10 +37,15 @@ public class AdminLoginFormController {
 
     @FXML
     void btnSigninOnAction(ActionEvent event) throws IOException {
-        if (getAdmin()){
-            setUpStage(event);
-        }else{
-            System.out.println("wrong");
+        Admin admin = getAdmin();
+        if(admin!=null){
+            if(PasswordUtil.getInstance().decryptPassword(admin.getPassword()).equals(txtPassword.getText().trim())){
+                setUpStage(event);
+            }else{
+                AlertHelper.showPasswordMismatchError();
+            }
+        }else {
+            AlertHelper.showAlert(Alert.AlertType.ERROR,"Username Error","cannot find a admin with the username provided");
         }
     }
 
@@ -55,11 +62,9 @@ public class AdminLoginFormController {
         currentStage.setScene(new Scene((Parent) load));
     }
 
-    public boolean getAdmin(){
+    public Admin getAdmin() {
         AdminService adminService = ServiceFactory.getInstance().getService(ServiceType.ADMIN);
-        Admin admin = adminService.getAdmin(txtEmail.getText().trim());
-        String s = PasswordUtil.getInstance().decryptPassword(admin.getPassword());
-        return s.equals(txtPassword.getText());
+        return adminService.getAdmin(txtEmail.getText().trim());
     }
 
 }

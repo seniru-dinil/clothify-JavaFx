@@ -129,7 +129,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="txtTotal" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="18.0" prefWidth="128.0" style="-fx-background-color: ;" text="90282.90" textFill="WHITE">
+                              <Label fx:id="txtTotal" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="15.0" prefHeight="18.0" prefWidth="128.0" style="-fx-background-color: ;" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

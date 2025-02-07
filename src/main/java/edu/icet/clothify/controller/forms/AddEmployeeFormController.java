@@ -3,8 +3,7 @@ package edu.icet.clothify.controller.forms;
 import edu.icet.clothify.dto.Employee;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.EmployeeService;
-import edu.icet.clothify.util.EmployeeUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -41,18 +40,22 @@ public class AddEmployeeFormController {
 
     @FXML
     void btnSaveEmployeeOnAction(ActionEvent event) throws SQLException {
-        Employee employee = new Employee(
-                0,
-                txtFirstName.getText(),
-                txtLastName.getText(),
-                txtEmail.getText(),
-                 LocalDateTime.now(),
-                txtPassword.getText()
-                );
-        EmployeeService service = ServiceFactory.getInstance().getService(ServiceType.EMPLOYEE);
-        service.addEmployee(employee);
-        EmployeeUtil.getInstance().loadContainer();
-        closeWindow(event);
+        if(Validation.getInstance().isMatch(txtPassword.getText(),txtConfirmPassword.getText())){
+            Employee employee = new Employee(
+                    0,
+                    txtFirstName.getText(),
+                    txtLastName.getText(),
+                    txtEmail.getText(),
+                    LocalDateTime.now(),
+                    PasswordUtil.getInstance().encryptPassword(txtPassword.getText().trim())
+            );
+            EmployeeService service = ServiceFactory.getInstance().getService(ServiceType.EMPLOYEE);
+            service.addEmployee(employee);
+            EmployeeUtil.getInstance().loadContainer();
+            closeWindow(event);
+        }else{
+            AlertHelper.showPasswordMismatchError();
+        }
     }
 
     public void closeWindow(ActionEvent event){

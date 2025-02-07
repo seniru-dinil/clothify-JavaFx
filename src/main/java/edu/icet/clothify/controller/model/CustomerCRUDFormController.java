@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -29,6 +31,7 @@ import java.util.ResourceBundle;
 
 public class CustomerCRUDFormController implements Initializable {
 
+    public TextField txtSearchCustomerBar;
     @FXML
     private VBox customerContainer;
 
@@ -64,5 +67,11 @@ public class CustomerCRUDFormController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene((Parent) load));
         stage.show();
+    }
+
+    public void txtSeachCustomer(KeyEvent keyEvent) {
+        CustomerService customerService = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
+        CustomerEntity customer = customerService.getCustomer(txtSearchCustomerBar.getText());
+        System.out.println(customer);
     }
 }

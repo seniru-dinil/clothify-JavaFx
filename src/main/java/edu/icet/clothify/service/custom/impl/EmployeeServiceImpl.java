@@ -7,13 +7,13 @@ import edu.icet.clothify.repository.custom.EmployeeDao;
 import edu.icet.clothify.service.custom.EmployeeService;
 import edu.icet.clothify.util.DaoType;
 import org.modelmapper.ModelMapper;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
     @Override
-    public List<Employee> getAllEmployees() throws SQLException {
+    public List<Employee> getAllEmployees(){
         EmployeeDao dao = DaoFactory.getInstance().getDao(DaoType.EMPLOYEE);
         List<EmployeeEntity> all = dao.getAll();
         List<Employee> employees = new ArrayList<>();
@@ -29,7 +29,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean deleteEmployee(Integer id) {
-        System.out.println("service layere "+id);
         EmployeeDao dao = DaoFactory.getInstance().getDao(DaoType.EMPLOYEE);
         return dao.delete(id);
     }
@@ -38,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployee(String id) {
         EmployeeDao dao = DaoFactory.getInstance().getDao(DaoType.EMPLOYEE);
         EmployeeEntity employeeEntity = dao.get(id);
-        return new ModelMapper().map(employeeEntity,Employee.class);
+        return employeeEntity==null?null:new ModelMapper().map(employeeEntity,Employee.class);
     }
 
     @Override

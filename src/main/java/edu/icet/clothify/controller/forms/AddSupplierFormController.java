@@ -6,18 +6,23 @@ import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.SupplierService;
 import edu.icet.clothify.util.ServiceType;
 import edu.icet.clothify.util.SupplierUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class AddSupplierFormController {
+public class AddSupplierFormController implements Initializable {
 
     @FXML
-    private JFXComboBox<?> cmbCategory;
+    private JFXComboBox<String> cmbCategory;
 
     @FXML
     private TextField txtAddress;
@@ -33,7 +38,7 @@ public class AddSupplierFormController {
 
     @FXML
     void btnCancelOnAction(ActionEvent event) {
-       closeWindow(event);
+        closeWindow(event);
     }
 
     @FXML
@@ -45,7 +50,7 @@ public class AddSupplierFormController {
                 txtEmail.getText(),
                 txtMobile.getText(),
                 txtAddress.getText(),
-                1
+                Integer.parseInt((cmbCategory.getSelectionModel().getSelectedItem().toString().split(" "))[0])
         ));
 
         SupplierUtil.getInstance().loadContainer();
@@ -53,11 +58,23 @@ public class AddSupplierFormController {
     }
 
 
-    public void closeWindow(ActionEvent event){
+    public void closeWindow(ActionEvent event) {
         Node source = (Node) event.getSource();
         Stage window = (Stage) source.getScene().getWindow();
         window.close();
     }
 
+    public void setUppliers() {
+        ObservableList<String> categoryList = FXCollections.observableArrayList();
+        categoryList.add("1 kids");
+        categoryList.add("2 gents");
+        categoryList.add("3 ladies");
+        cmbCategory.setItems(categoryList);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setUppliers();
+    }
 }
 

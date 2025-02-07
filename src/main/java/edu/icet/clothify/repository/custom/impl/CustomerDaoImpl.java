@@ -46,12 +46,12 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public CustomerEntity get(String id) {
+    public CustomerEntity get(String name) {
         try (Session session = HibernateUtil.getSession()) {
-            CustomerEntity fetchedUser = session.get(CustomerEntity.class,id);
-            if (fetchedUser!=null)return fetchedUser;
-            return null;
-        }catch (Exception e){
+            return session.createQuery("FROM CustomerEntity WHERE firstName=:name", CustomerEntity.class)
+                    .setParameter("name", name)
+                    .uniqueResult();
+        } catch (Exception e) {
             return null;
         }
     }

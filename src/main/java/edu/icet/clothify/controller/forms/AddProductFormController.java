@@ -48,7 +48,6 @@ public class AddProductFormController implements Initializable {
     private String imagePath;
 
 
-
     @FXML
     void btnBrowseOnAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -85,7 +84,7 @@ public class AddProductFormController implements Initializable {
                 Double.parseDouble(txtPrice.getText()),
                 Integer.parseInt(txtStock.getText()),
                 imagePath,
-                3,
+                Integer.parseInt(cmbCategory.getSelectionModel().getSelectedItem().split(" ")[0]),
                 Integer.parseInt(cmbSupplier.getSelectionModel().getSelectedItem().split(" ")[1])
                 ,
                 ""
@@ -99,15 +98,21 @@ public class AddProductFormController implements Initializable {
         setValuesToCombos();
     }
 
-    private void setValuesToCombos(){
+    private void setValuesToCombos() {
         SupplierService supplierService = ServiceFactory.getInstance().getService(ServiceType.SUPPLIER);
         List<Supplier> allSuppliers = supplierService.getAllSuppliers();
         ObservableList<String> objects = FXCollections.observableArrayList();
-        allSuppliers.forEach(supplier -> objects.add(supplier.getSupplierName()+" "+supplier.getSupplierId()));
+        allSuppliers.forEach(supplier -> objects.add(supplier.getSupplierName() + " " + supplier.getSupplierId()));
         cmbSupplier.setItems(objects);
+
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.add("3 Ladies");
+        list.add("2 Gents");
+        list.add("1 Kids");
+        cmbCategory.setItems(list);
     }
 
-    private void closeWindow(ActionEvent event){
+    private void closeWindow(ActionEvent event) {
         Node source = (Node) event.getSource();
         Stage window = (Stage) source.getScene().getWindow();
         window.close();
