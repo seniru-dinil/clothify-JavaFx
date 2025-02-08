@@ -4,6 +4,8 @@ import edu.icet.clothify.dto.Employee;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.EmployeeService;
 import edu.icet.clothify.util.*;
+import edu.icet.clothify.util.dtoUtil.EmployeeUtil;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

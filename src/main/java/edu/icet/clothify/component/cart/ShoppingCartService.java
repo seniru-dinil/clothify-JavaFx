@@ -1,4 +1,4 @@
-package edu.icet.clothify.component;
+package edu.icet.clothify.component.cart;
 
 import edu.icet.clothify.dto.CartHelper;
 import edu.icet.clothify.dto.Product;

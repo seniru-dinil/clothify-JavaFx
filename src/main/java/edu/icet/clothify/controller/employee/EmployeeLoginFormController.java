@@ -4,8 +4,9 @@ import edu.icet.clothify.dto.Employee;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.EmployeeService;
 import edu.icet.clothify.util.AlertHelper;
+import edu.icet.clothify.util.dtoUtil.EmployeeUtil;
 import edu.icet.clothify.util.PasswordUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -60,6 +61,7 @@ public class EmployeeLoginFormController {
         }else{
             String s = PasswordUtil.getInstance().decryptPassword(employee.getPassword());
             if(s.equals(txtPassword.getText().trim())){
+                EmployeeUtil.getInstance().setEmployeeInstance(employee);
                 setUpHome(event);
             }else{
                 AlertHelper.showPasswordMismatchError();

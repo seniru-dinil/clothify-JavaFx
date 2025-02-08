@@ -1,7 +1,7 @@
 package edu.icet.clothify.service;
 
 import edu.icet.clothify.service.custom.impl.*;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.enums.ServiceType;
 
 public class ServiceFactory {
     private static  ServiceFactory instance;

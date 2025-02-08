@@ -2,11 +2,12 @@ package edu.icet.clothify.service.custom.impl;
 
 
 import edu.icet.clothify.dto.Product;
+import edu.icet.clothify.entity.MostPurchasedProductEntity;
 import edu.icet.clothify.entity.ProductEntity;
 import edu.icet.clothify.repository.DaoFactory;
 import edu.icet.clothify.repository.custom.ProductDao;
 import edu.icet.clothify.service.custom.ProductService;
-import edu.icet.clothify.util.DaoType;
+import edu.icet.clothify.util.enums.DaoType;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
@@ -75,6 +76,13 @@ public class ProductServiceImpl implements ProductService {
         List<Product> products = new ArrayList<>();
         productsByName.forEach(p->products.add(new ModelMapper().map(p,Product.class)));
         return products;
+    }
+
+    @Override
+    public List<MostPurchasedProductEntity> getMostPurchasedProducts(){
+        ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+        List<MostPurchasedProductEntity> mostPurchasedProducts = productDao.getMostPurchasedProducts();
+        return mostPurchasedProducts;
     }
 
 }

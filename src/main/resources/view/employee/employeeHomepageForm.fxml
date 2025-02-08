@@ -14,11 +14,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="682.0" prefWidth="1172.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.employee.EmployeeHomepageFormController">
+<AnchorPane prefHeight="688.0" prefWidth="1354.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.employee.EmployeeHomepageFormController">
    <children>
-      <VBox prefHeight="682.0" prefWidth="289.0" style="-fx-background-color: #1F2937;">
+      <VBox layoutY="3.0" prefHeight="682.0" prefWidth="214.0" style="-fx-background-color: #1F2937;">
          <children>
-            <HBox alignment="CENTER" prefHeight="69.0" prefWidth="290.0" spacing="15.0">
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="257.0" spacing="15.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Clothify" textFill="WHITE">
                      <font>
@@ -42,40 +42,16 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="642.0" prefWidth="290.0">
+            <VBox alignment="CENTER" minWidth="-Infinity" prefHeight="634.0" prefWidth="103.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <children>
-                  <HBox alignment="CENTER" prefHeight="63.0" prefWidth="272.0">
-                     <children>
-                        <StackPane prefHeight="63.0" prefWidth="277.0">
-                           <children>
-                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnHomeOnAction" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: #2f3d51;" text="Home" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Button>
-                              <ImageView fitHeight="21.0" fitWidth="21.0" opacity="0.63" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
-                                 <StackPane.margin>
-                                    <Insets right="87.0" />
-                                 </StackPane.margin>
-                                 <image>
-                                    <Image url="@../../img/home.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </StackPane>
-                     </children>
-                  </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="324.0" prefHeight="63.0" prefWidth="232.0">
                      <children>
                         <StackPane prefHeight="63.0" prefWidth="261.0">
                            <children>
-                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: #2f3d51;" text="Place Order" textFill="WHITE">
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: transparent;" text="Place Order" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -102,7 +78,7 @@
                      <children>
                         <StackPane prefHeight="63.0" prefWidth="261.0">
                            <children>
-                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSettingsOnAction" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: #2f3d51;" text="Settings" textFill="WHITE">
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSettingsOnAction" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: transparent;" text="Settings" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -129,7 +105,7 @@
                      <children>
                         <StackPane prefHeight="63.0" prefWidth="261.0">
                            <children>
-                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSignOutOnAction" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: #2f3d51;" text="Sign Out" textFill="WHITE">
+                              <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSignOutOnAction" prefHeight="42.0" prefWidth="192.0" style="-fx-background-color: transparent;" text="Sign Out" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -156,6 +132,6 @@
             </VBox>
          </children>
       </VBox>
-      <VBox fx:id="container" layoutX="289.0" prefHeight="682.0" prefWidth="1242.0" style="-fx-background-color: #111827;" />
+      <VBox fx:id="container" layoutX="214.0" layoutY="3.0" prefHeight="682.0" prefWidth="1247.0" style="-fx-background-color: #111827;" />
    </children>
 </AnchorPane>

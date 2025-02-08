@@ -90,13 +90,13 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="214.0">
                            <children>
                               <Label text="First Name" textFill="#d1d5db" />
-                              <TextField fx:id="txtFirstName" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtFirstName" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="25.0" prefHeight="70.0" prefWidth="214.0">
                            <children>
                               <Label text="Last Name" textFill="#d1d5db" />
-                              <TextField fx:id="txtLastName" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtLastName" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" />
                            </children>
                         </VBox>
                      </children>
@@ -109,7 +109,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
                            <children>
                               <Label text="Email" textFill="#d1d5db" />
-                              <TextField fx:id="txtEmail" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                              <TextField fx:id="txtEmail" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" />
                            </children>
                         </VBox>
                      </children>
@@ -131,7 +131,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
                      <children>
                         <Label text="Current password" textFill="#d1d5db" />
-                        <TextField fx:id="txtCurrentPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                        <TextField fx:id="txtCurrentPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" />
                      </children>
                   </VBox>
                </children>
@@ -144,7 +144,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
                      <children>
                         <Label text="New password" textFill="#d1d5db" />
-                        <TextField fx:id="txtNewPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                        <TextField fx:id="txtNewPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" />
                      </children>
                   </VBox>
                </children>
@@ -157,7 +157,7 @@
                   <VBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="470.0">
                      <children>
                         <Label text="Confirm password" textFill="#d1d5db" />
-                        <TextField fx:id="txtConfirmPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151;" />
+                        <TextField fx:id="txtConfirmPassword" prefHeight="33.0" prefWidth="214.0" style="-fx-background-color: #374151; -fx-text-fill: #9ca3af;" />
                      </children>
                   </VBox>
                </children>

@@ -1,6 +1,7 @@
-package edu.icet.clothify.component;
+package edu.icet.clothify.component.placeorder;
 
 import com.jfoenix.controls.JFXButton;
+import edu.icet.clothify.component.cart.ShoppingCartService;
 import edu.icet.clothify.dto.Product;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

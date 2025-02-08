@@ -1,8 +1,7 @@
 package edu.icet.clothify.repository;
 
-import edu.icet.clothify.repository.custom.OrderDao;
 import edu.icet.clothify.repository.custom.impl.*;
-import edu.icet.clothify.util.DaoType;
+import edu.icet.clothify.util.enums.DaoType;
 
 public class DaoFactory {
     private static DaoFactory instance;

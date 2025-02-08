@@ -4,8 +4,8 @@ package edu.icet.clothify.controller.model;
 import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
-import edu.icet.clothify.util.CustomerUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.dtoUtil.CustomerUtil;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CustomerCRUDFormController implements Initializable {
+public class ManageCustomerFormController implements Initializable {
 
     public TextField txtSearchCustomerBar;
     @FXML

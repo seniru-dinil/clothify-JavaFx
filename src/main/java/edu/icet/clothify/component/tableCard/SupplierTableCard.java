@@ -5,8 +5,8 @@ import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Supplier;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.SupplierService;
-import edu.icet.clothify.util.ServiceType;
-import edu.icet.clothify.util.SupplierUtil;
+import edu.icet.clothify.util.enums.ServiceType;
+import edu.icet.clothify.util.dtoUtil.SupplierUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,13 +30,13 @@ public class SupplierTableCard {
     }
 
     public AnchorPane createSupplierCard(Supplier supplier) {
-        // Create the AnchorPane
+
         AnchorPane supplierPane = new AnchorPane();
         supplierPane.setPrefHeight(42.0);
         supplierPane.setPrefWidth(874.0);
         supplierPane.setStyle("-fx-background-color: #1F2937;");
 
-        // Create Labels
+
         Label txtID = new Label(String.valueOf(supplier.getSupplierId()));
         txtID.setLayoutX(12.0);
         txtID.setLayoutY(12.0);
@@ -58,7 +58,7 @@ public class SupplierTableCard {
         txtEmail.setPrefWidth(145.0);
         txtEmail.setTextFill(Color.web("#d1d5db"));
 
-        // Create ImageView based on category ID
+
         String imgPath;
         switch (supplier.getCategoryId()) {
             case 1:
@@ -89,7 +89,7 @@ public class SupplierTableCard {
 
         imagePane.getChildren().add(img);
 
-        // Create HBox for Edit and Delete buttons
+
         HBox actionBox = new HBox();
         actionBox.setAlignment(javafx.geometry.Pos.CENTER);
         actionBox.setLayoutX(799.0);
@@ -98,7 +98,7 @@ public class SupplierTableCard {
         actionBox.setPrefWidth(33.0);
         actionBox.setSpacing(3);
 
-        // Edit Button
+
         StackPane editPane = createIconButton("/img/edite.png",
                 16, 16,
                 24, 2,
@@ -106,11 +106,11 @@ public class SupplierTableCard {
                     try {
                         handleEdit(supplier);
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+
                     }
                 });
 
-        // Delete Button
+
         StackPane deletePane = createIconButton("/img/delete.png",
                 16, 16,
                 24, 2,
@@ -118,14 +118,14 @@ public class SupplierTableCard {
                     try {
                         handleDelete(supplier);
                     } catch (SQLException e) {
-                        throw new RuntimeException(e);
+
                     }
                 });
 
 
         actionBox.getChildren().addAll(editPane, deletePane);
 
-        // Add all elements to the AnchorPane
+
         supplierPane.getChildren().addAll(txtID, txtName, txtEmail, imagePane, actionBox);
 
         return supplierPane;
@@ -149,7 +149,7 @@ public class SupplierTableCard {
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             icon.setImage(image);
         } catch (Exception e) {
-            System.err.println("Error loading image: " + e.getMessage());
+
         }
 
         pane.getChildren().addAll(icon,button);
@@ -168,7 +168,7 @@ public class SupplierTableCard {
         SupplierService supplierService = ServiceFactory.getInstance().getService(ServiceType.SUPPLIER);
         boolean b = supplierService.deleteSupplier(supplier.getSupplierId());
         SupplierUtil.getInstance().loadContainer();
-        System.out.println(b?"deleted":"error");
+
     }
 }
 

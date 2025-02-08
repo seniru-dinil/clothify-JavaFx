@@ -3,9 +3,10 @@ package edu.icet.clothify.controller.admin;
 import edu.icet.clothify.dto.Admin;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
+import edu.icet.clothify.util.dtoUtil.AdminUtil;
 import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.PasswordUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -40,6 +41,7 @@ public class AdminLoginFormController {
         Admin admin = getAdmin();
         if(admin!=null){
             if(PasswordUtil.getInstance().decryptPassword(admin.getPassword()).equals(txtPassword.getText().trim())){
+                AdminUtil.getInstance().setAdminInstance(admin);
                 setUpStage(event);
             }else{
                 AlertHelper.showPasswordMismatchError();

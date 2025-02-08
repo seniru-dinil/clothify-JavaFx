@@ -1,12 +1,15 @@
-package edu.icet.clothify.util;
+package edu.icet.clothify.util.dtoUtil;
 
 import edu.icet.clothify.component.tableCard.EmployeeTableCard;
 import edu.icet.clothify.dto.Employee;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.EmployeeService;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,6 +18,10 @@ public class EmployeeUtil {
     @FXML
     public VBox employeeContainer;
     private static EmployeeUtil instance;
+
+    @Setter
+    @Getter
+    private Employee employeeInstance;
 
     private EmployeeUtil() {
     }

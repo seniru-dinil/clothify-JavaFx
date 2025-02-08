@@ -4,8 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
-import edu.icet.clothify.util.CustomerUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.dtoUtil.CustomerUtil;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -39,20 +39,20 @@ public class CustomerTableCard {
         anchorPane.setPrefSize(874, 42);
         anchorPane.setStyle("-fx-background-color: #1F2937;");
 
-        // ID Label
+
         Label txtID = createLabel(12.0, 12.0, 78.0, 18.0, String.valueOf(customer.getCustomerID()));
 
-        // Name Label (combine first and last name)
+
         String fullName = customer.getFirstName() + " " + customer.getLastName();
         Label txtName = createLabel(137.0, 12.0, 90.0, 18.0, fullName);
 
-        // Email Label
+
         Label txtEmail = createLabel(347.0, 12.0, 170.0, 18.0, customer.getEmail());
 
-        // Mobile Label
+
         Label txtMobile = createLabel(567.0, 12.0, 98.0, 18.0, customer.getMobileNumber());
 
-        // Action buttons container
+
         HBox buttonBox = createButtonHBox(customer);
 
         anchorPane.getChildren().addAll(txtID, txtName, txtEmail, txtMobile, buttonBox);
@@ -76,7 +76,7 @@ public class CustomerTableCard {
         hbox.setAlignment(Pos.CENTER);
         hbox.setSpacing(5);
 
-        // Edit Button
+
         StackPane editButton = createIconButton("/img/edite.png", 16, 16, 24, 2, () -> {
             try {
                 handleEdit(customer);
@@ -85,7 +85,7 @@ public class CustomerTableCard {
             }
         });
 
-        // Delete Button
+
         StackPane deleteButton = createIconButton("/img/delete.png", 18, 20, 22, 0, () -> {
             try {
                 handleDelete(customer);

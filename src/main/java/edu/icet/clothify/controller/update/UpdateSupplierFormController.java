@@ -1,6 +1,6 @@
 package edu.icet.clothify.controller.update;
 
-import edu.icet.clothify.util.SupplierUtil;
+import edu.icet.clothify.util.dtoUtil.SupplierUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

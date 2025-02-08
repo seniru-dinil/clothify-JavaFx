@@ -1,9 +1,10 @@
-package edu.icet.clothify.util;
+package edu.icet.clothify.util.dtoUtil;
 
 import edu.icet.clothify.component.tableCard.ProductTableCard;
 import edu.icet.clothify.dto.Product;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.ProductService;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 

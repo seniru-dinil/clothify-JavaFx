@@ -4,8 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Employee;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.EmployeeService;
-import edu.icet.clothify.util.EmployeeUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.dtoUtil.EmployeeUtil;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -31,20 +31,20 @@ public class EmployeeTableCard {
         anchorPane.setPrefSize(874, 42);
         anchorPane.setStyle("-fx-background-color: #1F2937;");
 
-        // ID Label
+
         Label txtID = createLabel(12.0, 12.0, 78.0, 18.0, String.valueOf(employee.getEmployeeId()));
 
-        // Name Label (combine first and last name)
+
         String fullName = employee.getEmployeeFirstName() + " " + employee.getEmployeeLastName();
         Label txtName = createLabel(137.0, 12.0, 98.0, 18.0, fullName);
 
-        // Email Label
+
         Label txtEmail = createLabel(347.0, 12.0, 170.0, 18.0, employee.getEmail());
 
-        // Mobile Label
+
         Label txtDate = createLabel(567.0, 12.0, 98.0, 18.0, String.valueOf(employee.getJoinedDate()));
 
-        // Action buttons container
+
         HBox buttonBox = createButtonHBox(employee);
 
         anchorPane.getChildren().addAll(txtID, txtName, txtEmail, txtDate, buttonBox);

@@ -5,8 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import edu.icet.clothify.dto.Product;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.ProductService;
-import edu.icet.clothify.util.ProductUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.dtoUtil.ProductUtil;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProductCRUDFormController implements Initializable {
+public class ManageProductFormController implements Initializable {
 
 
     public VBox productContainer;

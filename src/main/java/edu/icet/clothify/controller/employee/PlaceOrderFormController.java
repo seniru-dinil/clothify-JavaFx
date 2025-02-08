@@ -1,8 +1,8 @@
 package edu.icet.clothify.controller.employee;
 
 import com.jfoenix.controls.JFXComboBox;
-import edu.icet.clothify.component.ProductCardFactory;
-import edu.icet.clothify.component.ShoppingCartService;
+import edu.icet.clothify.component.placeorder.ProductCardFactory;
+import edu.icet.clothify.component.cart.ShoppingCartService;
 import edu.icet.clothify.dto.*;
 import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.service.ServiceFactory;
@@ -12,7 +12,7 @@ import edu.icet.clothify.service.custom.OrderService;
 import edu.icet.clothify.service.custom.ProductService;
 import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.InvoiceGenerator;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +23,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.modelmapper.ModelMapper;
@@ -36,6 +38,7 @@ public class PlaceOrderFormController implements Initializable {
 
     public VBox cartContainer;
     public ScrollPane scrollPane;
+    public TextField txtSearchProduct;
     @FXML
     private JFXComboBox<String> cmbSelectCustomer;
     @FXML
@@ -73,11 +76,11 @@ public class PlaceOrderFormController implements Initializable {
         ShoppingCartService.getInstance().initializeFXModels(cartContainer, txtTotal);
         setValuesToCombo();
         scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
-        loadProductCard();
+        loadProductCard(getProducts());
     }
 
-    public void loadProductCard() {
-        List<Product> products = getProducts();
+    public void loadProductCard(List<Product> products) {
+        vboxContainer.getChildren().clear();
         HBox currentHBox = createNewHBox();
         for (Product product : products) {
             VBox productCard = ProductCardFactory.getInstance().createProductCard(product);
@@ -147,4 +150,9 @@ public class PlaceOrderFormController implements Initializable {
 
     }
 
+    public void searchBarOnAction(KeyEvent keyEvent) {
+        ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+        List<Product> productsByName = productService.getProductsByName(txtSearchProduct.getText());
+        loadProductCard(productsByName);
+    }
 }

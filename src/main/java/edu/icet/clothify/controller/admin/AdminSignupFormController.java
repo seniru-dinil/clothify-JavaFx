@@ -4,7 +4,7 @@ import edu.icet.clothify.dto.Admin;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
 import edu.icet.clothify.util.PasswordUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="682.0" prefWidth="924.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.model.CustomerCRUDFormController">
+<AnchorPane prefHeight="682.0" prefWidth="924.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.model.ManageCustomerFormController">
    <children>
       <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="924.0">
          <padding>

@@ -1,4 +1,4 @@
-package edu.icet.clothify.util;
+package edu.icet.clothify.util.dtoUtil;
 
 import edu.icet.clothify.component.tableCard.CustomerTableCard;
 import edu.icet.clothify.dto.Customer;
@@ -6,6 +6,7 @@ import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.service.custom.impl.CustomerServiceImpl;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;

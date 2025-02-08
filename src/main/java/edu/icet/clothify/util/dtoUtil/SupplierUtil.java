@@ -1,10 +1,10 @@
-package edu.icet.clothify.util;
+package edu.icet.clothify.util.dtoUtil;
 
 import edu.icet.clothify.component.tableCard.SupplierTableCard;
 import edu.icet.clothify.dto.Supplier;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.SupplierService;
-import edu.icet.clothify.service.custom.impl.SupplierServiceImpl;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;

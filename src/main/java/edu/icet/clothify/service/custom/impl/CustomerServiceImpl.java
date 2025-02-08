@@ -6,11 +6,12 @@ import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.repository.DaoFactory;
 import edu.icet.clothify.repository.custom.CustomerDao;
 import edu.icet.clothify.service.custom.CustomerService;
-import edu.icet.clothify.util.DaoType;
+import edu.icet.clothify.util.enums.DaoType;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CustomerServiceImpl implements CustomerService {
     @Override
@@ -52,5 +53,11 @@ public class CustomerServiceImpl implements CustomerService {
         List<Customer> customers = new ArrayList<>();
         customersByName.forEach(c->customers.add(new ModelMapper().map(c,Customer.class)));
         return customers;
+    }
+
+    @Override
+    public Map<CustomerEntity,Double> getBestCustomers(){
+        CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
+        return customerDao.getBestCustomers();
     }
 }

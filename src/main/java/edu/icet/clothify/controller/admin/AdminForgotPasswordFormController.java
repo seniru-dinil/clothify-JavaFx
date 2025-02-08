@@ -3,11 +3,10 @@ package edu.icet.clothify.controller.admin;
 
 import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.service.ServiceFactory;
-import edu.icet.clothify.service.SupperService;
 import edu.icet.clothify.service.custom.AdminService;
 import edu.icet.clothify.util.EmailUtil;
 import edu.icet.clothify.util.OTPGenerator;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.enums.ServiceType;
 import edu.icet.clothify.util.Validation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +61,7 @@ public class AdminForgotPasswordFormController implements Initializable {
           adminService.updateAdmin(txtEmail.getText().trim(),txtConfirmPassword.getText().trim());
           loadLoginWindow(event);
       }else{
-          System.out.println("error");
+
       }
     }
 

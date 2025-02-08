@@ -2,6 +2,7 @@ package edu.icet.clothify.repository.custom.impl;
 
 
 import edu.icet.clothify.dto.Product;
+import edu.icet.clothify.entity.MostPurchasedProductEntity;
 import edu.icet.clothify.entity.ProductEntity;
 import edu.icet.clothify.entity.SupplierEntity;
 import edu.icet.clothify.repository.custom.ProductDao;
@@ -10,7 +11,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductDaoImpl implements ProductDao {
 
@@ -147,6 +150,33 @@ public class ProductDaoImpl implements ProductDao {
                 return query.list();
             }catch (Exception e){
                 return  null;
+            }
+        }
+    }
+
+    @Override
+    public List<MostPurchasedProductEntity> getMostPurchasedProducts() {
+        try(Session session=HibernateUtil.getSession()){
+            try {
+                String hql = "SELECT od.product, SUM(od.quantity), SUM(od.quantity * od.price) " +
+                        "FROM OrderDetailEntity od " +
+                        "GROUP BY od.product " +
+                        "ORDER BY SUM(od.quantity) DESC";
+
+                Query<Object[]> query = session.createQuery(hql, Object[].class);
+                query.setMaxResults(3);
+                List<Object[]> results = query.getResultList();
+                List<MostPurchasedProductEntity> mostPurchasedProductEntities=new ArrayList<>();
+                results.forEach(i->{
+                    mostPurchasedProductEntities.add(new MostPurchasedProductEntity(
+                            (ProductEntity) i[0],
+                            (Long) i[1],
+                            (Double) i[2]
+                    ));
+                });
+                return mostPurchasedProductEntities;
+            } catch (Exception e) {
+                return null;
             }
         }
     }

@@ -1,4 +1,4 @@
-package edu.icet.clothify.component;
+package edu.icet.clothify.component.cart;
 
 import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.CartHelper;
@@ -30,21 +30,21 @@ public class CartItemFactory {
         cartItem.setPrefWidth(378.0);
         cartItem.setSpacing(10);
 
-        // Product Name Label
+
         Label nameLabel = new Label(product.getProductName());
         nameLabel.setPrefSize(174, 20);
         nameLabel.setTextFill(javafx.scene.paint.Color.valueOf("#d1d5db"));
         nameLabel.setFont(new Font(14));
 
-        // Quantity Spinner
+
         Spinner<Integer> spinner = new Spinner<>();
         spinner.setPrefSize(48, 26);
         spinner.setStyle("-fx-background:transparent;");
 
-        // Get unit price
+
         double unitPrice = product.getProductPrice();
 
-        // Configure spinner with validation
+
         SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(
                         1,
@@ -53,7 +53,7 @@ public class CartItemFactory {
                 );
         spinner.setValueFactory(valueFactory);
 
-        // Price Label (initialize with quantity 1)
+
         Label priceLabel = new Label(String.format("%.2f", unitPrice * helper.getQuantity()));
         priceLabel.setAlignment(Pos.CENTER_RIGHT);
         priceLabel.setPrefSize(90, 20);
@@ -61,7 +61,7 @@ public class CartItemFactory {
         priceLabel.setFont(new Font(14));
         priceLabel.setPadding(new Insets(0, 0, 0, 7));
 
-        // Add spinner listener for price updates
+
         spinner.valueProperty().addListener((obs, oldValue, newValue) -> {
             double totalPrice = unitPrice * newValue;
             priceLabel.setText(String.format("%.2f", totalPrice));
@@ -72,10 +72,9 @@ public class CartItemFactory {
                 helper.setQuantity(newValue);
             }
 
-            // Prevent going below 1
         });
 
-        // Delete Button
+
         StackPane deletePane = new StackPane();
         deletePane.setPrefSize(83, 150);
         deletePane.setAlignment(Pos.CENTER_RIGHT);
@@ -92,14 +91,14 @@ public class CartItemFactory {
             deleteButton.setText("X");
         }
 
-        // Delete button action
+
         deleteButton.setOnAction(event -> {
             ShoppingCartService.getInstance().deleteFromCart(helper);
         });
 
         deletePane.getChildren().add(deleteButton);
 
-        // Add all components to HBox
+
         cartItem.getChildren().addAll(
                 nameLabel,
                 spinner,

@@ -1,5 +1,6 @@
 package edu.icet.clothify.repository.custom.impl;
 
+import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.repository.custom.CustomerDao;
 import edu.icet.clothify.util.HibernateUtil;
@@ -7,7 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CustomerDaoImpl implements CustomerDao {
     @Override
@@ -66,6 +70,30 @@ public class CustomerDaoImpl implements CustomerDao {
                 query.setParameter("name", name);
                 return query.list();
             }catch (Exception e){
+                return null;
+            }
+        }
+    }
+
+    @Override
+    public Map<CustomerEntity,Double> getBestCustomers() {
+        Map<CustomerEntity,Double> customerEntityDoubleMap = new HashMap<>();
+        try(Session session= HibernateUtil.getSession()){
+            try {
+                String hql = "SELECT o.customerId, SUM(o.orderTotal) " +
+                        "FROM OrderEntity o " +
+                        "GROUP BY o.customerId " +
+                        "ORDER BY SUM(o.orderTotal) DESC";
+
+                Query<Object[]> query = session.createQuery(hql, Object[].class);
+                query.setMaxResults(3);
+                List<Object[]> results = query.getResultList();
+                for (Object[] i:results){
+                    customerEntityDoubleMap.put((CustomerEntity) i[0],(Double) i[1]);
+                }
+                return customerEntityDoubleMap;
+            } catch (Exception e) {
+                e.printStackTrace();
                 return null;
             }
         }

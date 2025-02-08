@@ -49,7 +49,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="118.0" prefWidth="791.0" spacing="10.0">
                            <children>
-                              <TextField fx:id="txtSearchProduct" prefHeight="91.0" prefWidth="630.0" promptText="search products" style="-fx-background-color: #1F2937;" styleClass="font-color" stylesheets="@../../css/login/login.css">
+                              <TextField fx:id="txtSearchProduct" onKeyPressed="#searchBarOnAction" prefHeight="91.0" prefWidth="630.0" promptText="search products" style="-fx-background-color: #1F2937;" styleClass="font-color" stylesheets="@../../css/login/login.css">
                                  <padding>
                                     <Insets left="15.0" />
                                  </padding>

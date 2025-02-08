@@ -5,7 +5,7 @@ import edu.icet.clothify.entity.EmployeeEntity;
 import edu.icet.clothify.repository.DaoFactory;
 import edu.icet.clothify.repository.custom.EmployeeDao;
 import edu.icet.clothify.service.custom.EmployeeService;
-import edu.icet.clothify.util.DaoType;
+import edu.icet.clothify.util.enums.DaoType;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;

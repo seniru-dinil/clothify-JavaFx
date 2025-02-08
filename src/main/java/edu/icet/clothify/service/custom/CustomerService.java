@@ -5,6 +5,7 @@ import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.service.SupperService;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public interface CustomerService extends SupperService {
     List<CustomerEntity> getAllCustomer();
@@ -13,4 +14,5 @@ public interface CustomerService extends SupperService {
     boolean updateCustomer(Customer customer);
     CustomerEntity getCustomer(String id);
      List<Customer> getCustomersByName(String name);
+     Map<CustomerEntity,Double> getBestCustomers();
 }

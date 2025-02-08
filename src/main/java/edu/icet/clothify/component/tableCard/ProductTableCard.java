@@ -4,8 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Product;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.ProductService;
-import edu.icet.clothify.util.ProductUtil;
-import edu.icet.clothify.util.ServiceType;
+import edu.icet.clothify.util.dtoUtil.ProductUtil;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -159,7 +159,7 @@ public class ProductTableCard {
         hbox.setAlignment(Pos.CENTER);
         hbox.setSpacing(5);
 
-        // Edit Button
+
         StackPane editButton = createIconButton(
                 "/img/edite.png",
                 16.0, 16.0,
@@ -167,7 +167,7 @@ public class ProductTableCard {
                 ()->handleEdite(product,txtQuantity,txtPrice)
         );
 
-        // Delete Button
+
         StackPane deleteButton = createIconButton(
                 "/img/delete.png",
                 18.0, 20.0,
