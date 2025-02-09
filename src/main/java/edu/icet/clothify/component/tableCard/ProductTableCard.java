@@ -11,16 +11,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class ProductTableCard {
     private static ProductTableCard instance;
-    ProductTableCard(){}
+
+    ProductTableCard() {
+    }
+
     public static ProductTableCard getInstance() {
-        return instance==null?instance=new ProductTableCard():instance;
+        return instance == null ? instance = new ProductTableCard() : instance;
     }
 
     public AnchorPane createProductPane(Product product) {
@@ -37,37 +42,18 @@ public class ProductTableCard {
 
         TextField txtQuantity = createTextField(528.0, 10.0, 62.0, 18.0, String.valueOf(product.getProductStock()));
         txtQuantity.setAlignment(Pos.CENTER);
-        txtQuantity.setOnAction(e->{
-            ProductService service=ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
-            service.updateProduct(new Product(
-                    product.getProductID(),
-                    product.getProductName(),
-                    product.getProductPrice(),
-                    Integer.parseInt(txtQuantity.getText()),
-                    product.getProductImagePath(),
-                    product.getProductCategoryID(),
-                    product.getProductSupplierID(),
-                    product.getProductDescription()
-            ));
+        txtQuantity.setOnAction(e -> {
+            ProductService service = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+            service.updateProductByQuantity(Integer.parseInt(txtQuantity.getText()), product.getProductID());
         });
 
 
         TextField txtPrice = createTextField(408.0, 10.0, 62.0, 18.0, String.format("%.2f", product.getProductPrice()));
         txtPrice.setAlignment(Pos.CENTER_RIGHT);
-        txtPrice.setOnAction(e->{
-            ProductService service=ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
-            service.updateProduct(new Product(
-                    product.getProductID(),
-                    product.getProductName(),
-                    Double.parseDouble(txtPrice.getText()),
-                    product.getProductStock(),
-                    product.getProductImagePath(),
-                    product.getProductCategoryID(),
-                    product.getProductSupplierID(),
-                    product.getProductDescription()
-            ));
+        txtPrice.setOnAction(e -> {
+            ProductService service = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+            service.updateProductByPrice(Double.parseDouble(txtPrice.getText()), product.getProductID());
         });
-
 
 
         StackPane imagePane = createCategoryImagePane(product.getProductCategoryID());
@@ -76,7 +62,7 @@ public class ProductTableCard {
         Label txtAvailable = createStockLabel(product.getProductStock());
 
 
-        HBox buttonBox = createButtonHBox(product,txtQuantity,txtPrice);
+        HBox buttonBox = createButtonHBox(product, txtQuantity, txtPrice);
 
         anchorPane.getChildren().addAll(txtID, txtName, txtQuantity, txtPrice, imagePane, txtAvailable, buttonBox);
         return anchorPane;
@@ -90,6 +76,7 @@ public class ProductTableCard {
         label.setTextFill(Color.web("#d1d5db"));
         return label;
     }
+
     private TextField createTextField(double x, double y, double width, double height, String text) {
         TextField textField = new TextField(text);
         textField.setLayoutX(x);
@@ -103,10 +90,17 @@ public class ProductTableCard {
     private StackPane createCategoryImagePane(int categoryId) {
         String imageName;
         switch (categoryId) {
-            case 1: imageName = "img3.png"; break;
-            case 2: imageName = "img1.png"; break;
-            case 3: imageName = "img2.png"; break;
-            default: imageName = "img1.png"; // Default image
+            case 1:
+                imageName = "img3.png";
+                break;
+            case 2:
+                imageName = "img1.png";
+                break;
+            case 3:
+                imageName = "img2.png";
+                break;
+            default:
+                imageName = "img1.png"; // Default image
         }
 
         StackPane stackPane = new StackPane();
@@ -151,7 +145,7 @@ public class ProductTableCard {
         return label;
     }
 
-    private HBox createButtonHBox(Product product,TextField txtQuantity,TextField txtPrice) {
+    private HBox createButtonHBox(Product product, TextField txtQuantity, TextField txtPrice) {
         HBox hbox = new HBox();
         hbox.setLayoutX(792.0);
         hbox.setLayoutY(8.0);
@@ -164,7 +158,7 @@ public class ProductTableCard {
                 "/img/edite.png",
                 16.0, 16.0,
                 24.0, 2.0,
-                ()->handleEdite(product,txtQuantity,txtPrice)
+                () -> handleEdite(product, txtQuantity, txtPrice)
         );
 
 
@@ -172,7 +166,7 @@ public class ProductTableCard {
                 "/img/delete.png",
                 18.0, 20.0,
                 22.0, 0.0,
-                ()->handleDelete(product)
+                () -> handleDelete(product)
         );
 
         hbox.getChildren().addAll(editButton, deleteButton);
@@ -180,13 +174,13 @@ public class ProductTableCard {
     }
 
     private StackPane createIconButton(String imagePath, double imgWidth, double imgHeight,
-                                       double btnWidth, double btnHeight,Runnable action) {
+                                       double btnWidth, double btnHeight, Runnable action) {
         StackPane pane = new StackPane();
 
         JFXButton button = new JFXButton();
         button.setPrefSize(btnWidth, btnHeight);
         button.setStyle("-fx-background-color: transparent;");
-        button.setOnAction(t->action.run());
+        button.setOnAction(t -> action.run());
         ImageView icon = new ImageView();
         icon.setFitWidth(imgWidth);
         icon.setFitHeight(imgHeight);
@@ -203,12 +197,13 @@ public class ProductTableCard {
         return pane;
     }
 
-    public void handleDelete(Product product){
+    public void handleDelete(Product product) {
         ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
         productService.deleteProduct(product.getProductID());
         ProductUtil.getInstance().getAllData();
     }
-    public void handleEdite(Product product,TextField txtQuantity,TextField txtPrice){
+
+    public void handleEdite(Product product, TextField txtQuantity, TextField txtPrice) {
         txtQuantity.setEditable(true);
         txtPrice.setEditable(true);
     }

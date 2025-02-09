@@ -15,9 +15,12 @@ import java.util.Map;
 
 public class CustomerServiceImpl implements CustomerService {
     @Override
-    public List<CustomerEntity> getAllCustomer() {
+    public List<Customer> getAllCustomer() {
         CustomerDao dao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
-        return dao.getAll();
+        List<CustomerEntity> allCustomer = dao.getAll();
+        List<Customer> customers = new ArrayList<>();
+        allCustomer.forEach(c -> customers.add(new ModelMapper().map(c, Customer.class)));
+        return customers;
     }
 
     @Override
@@ -41,9 +44,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerEntity getCustomer(String id) {
+    public Customer getCustomer(String id) {
         CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
-        return customerDao.get(id);
+        return new ModelMapper().map(customerDao.get(id), Customer.class);
     }
 
     @Override
@@ -51,12 +54,12 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
         List<CustomerEntity> customersByName = customerDao.getCustomersByName(name);
         List<Customer> customers = new ArrayList<>();
-        customersByName.forEach(c->customers.add(new ModelMapper().map(c,Customer.class)));
+        customersByName.forEach(c -> customers.add(new ModelMapper().map(c, Customer.class)));
         return customers;
     }
 
     @Override
-    public Map<CustomerEntity,Double> getBestCustomers(){
+    public Map<CustomerEntity, Double> getBestCustomers() {
         CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
         return customerDao.getBestCustomers();
     }

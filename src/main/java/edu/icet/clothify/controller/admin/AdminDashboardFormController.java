@@ -7,8 +7,6 @@ import edu.icet.clothify.entity.MostPurchasedProductEntity;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.service.custom.ProductService;
-import edu.icet.clothify.util.DashboardUtil;
-import edu.icet.clothify.util.dtoUtil.AdminUtil;
 import edu.icet.clothify.util.enums.ServiceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +16,6 @@ import javafx.scene.layout.VBox;
 import lombok.SneakyThrows;
 
 import java.net.URL;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -49,15 +46,6 @@ public class AdminDashboardFormController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        txtAdminName.setText(AdminUtil.getInstance().getAdminInstance().getFirstName());
-        ResultSet totalNumberOfOrders = DashboardUtil.getInstance().getTotalNumberOfOrders();
-        if (totalNumberOfOrders.next()) txtTotalOrders.setText(String.valueOf(totalNumberOfOrders.getInt(1)));
-        ResultSet totalNumberOfProducts = DashboardUtil.getInstance().getTotalNumberOfProducts();
-        if (totalNumberOfProducts.next()) txtTotalProducts.setText(String.valueOf(totalNumberOfProducts.getInt(1)));
-        ResultSet totalNumberOfSuppliers = DashboardUtil.getInstance().getTotalNumberOfSuppliers();
-        if (totalNumberOfSuppliers.next()) txtTotalSuppliers.setText(String.valueOf(totalNumberOfSuppliers.getInt(1)));
-        ResultSet totalSales = DashboardUtil.getInstance().getTotalSales();
-        if (totalSales.next()) txtTotalSales.setText(String.valueOf(totalSales.getInt(1)));
         setVboxTopProductsContainer();
         setvBoxBestCustomers();
     }

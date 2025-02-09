@@ -16,5 +16,6 @@ public interface ProductService extends SupperService {
      List<Product> getProductsByStatus(String status);
      List<Product> getProductsByName(String status);
     List<MostPurchasedProductEntity> getMostPurchasedProducts();
-
+    boolean updateProductByQuantity(Integer qty,Integer pid);
+    boolean updateProductByPrice(Double price,Integer pid);
 }

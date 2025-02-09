@@ -1,10 +1,8 @@
 package edu.icet.clothify.repository.custom.impl;
 
 
-import edu.icet.clothify.dto.Product;
 import edu.icet.clothify.entity.MostPurchasedProductEntity;
 import edu.icet.clothify.entity.ProductEntity;
-import edu.icet.clothify.entity.SupplierEntity;
 import edu.icet.clothify.repository.custom.ProductDao;
 import edu.icet.clothify.util.HibernateUtil;
 import org.hibernate.Session;
@@ -13,7 +11,6 @@ import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductDaoImpl implements ProductDao {
 
@@ -141,22 +138,21 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<ProductEntity> getProductsByName(String name) {
-        try(Session session= HibernateUtil.getSession()){
-            try{
-                Transaction transaction = session.beginTransaction();
+        try (Session session = HibernateUtil.getSession()) {
+            try {
                 String hql = "FROM ProductEntity p WHERE LOWER(p.productName) LIKE LOWER(CONCAT('%', :name, '%'))";
                 Query<ProductEntity> query = session.createQuery(hql, ProductEntity.class);
                 query.setParameter("name", name);
                 return query.list();
-            }catch (Exception e){
-                return  null;
+            } catch (Exception e) {
+                return null;
             }
         }
     }
 
     @Override
     public List<MostPurchasedProductEntity> getMostPurchasedProducts() {
-        try(Session session=HibernateUtil.getSession()){
+        try (Session session = HibernateUtil.getSession()) {
             try {
                 String hql = "SELECT od.product, SUM(od.quantity), SUM(od.quantity * od.price) " +
                         "FROM OrderDetailEntity od " +
@@ -166,8 +162,8 @@ public class ProductDaoImpl implements ProductDao {
                 Query<Object[]> query = session.createQuery(hql, Object[].class);
                 query.setMaxResults(3);
                 List<Object[]> results = query.getResultList();
-                List<MostPurchasedProductEntity> mostPurchasedProductEntities=new ArrayList<>();
-                results.forEach(i->{
+                List<MostPurchasedProductEntity> mostPurchasedProductEntities = new ArrayList<>();
+                results.forEach(i -> {
                     mostPurchasedProductEntities.add(new MostPurchasedProductEntity(
                             (ProductEntity) i[0],
                             (Long) i[1],
@@ -179,5 +175,46 @@ public class ProductDaoImpl implements ProductDao {
                 return null;
             }
         }
+    }
+
+    @Override
+    public boolean updateProductByQuantity(Integer qty, Integer productId) {
+        try (Session session = HibernateUtil.getSession()) {
+            Transaction transaction = session.beginTransaction();
+            try {
+                boolean isUpdated = session.createQuery("UPDATE ProductEntity SET productStock = :qty WHERE productID = :productId")
+                        .setParameter("qty", qty)
+                        .setParameter("productId", productId)
+                        .executeUpdate() > 0;
+                if (isUpdated) transaction.commit();
+                return isUpdated;
+            } catch (Exception e) {
+                if (transaction != null) transaction.rollback();
+                return false;
+            }
+        }
+    }
+
+    @Override
+    public boolean updateProductByPrice(Double price, Integer pid) {
+        try(Session session = HibernateUtil.getSession()){
+            Transaction transaction = session.beginTransaction();
+            try {
+                boolean b = session.createQuery("UPDATE ProductEntity SET productPrice = :price WHERE productID = :pid")
+                        .setParameter("price", price)
+                        .setParameter("pid", pid)
+                        .executeUpdate() > 0;
+                if (b){
+                    transaction.commit();
+                    return b;
+                }else {
+                    transaction.rollback();
+                }
+            }catch (Exception e){
+                if (transaction!=null)transaction.rollback();
+                return false;
+            }
+        }
+        return false;
     }
 }

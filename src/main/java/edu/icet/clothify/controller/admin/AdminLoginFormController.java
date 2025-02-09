@@ -3,9 +3,8 @@ package edu.icet.clothify.controller.admin;
 import edu.icet.clothify.dto.Admin;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
-import edu.icet.clothify.util.dtoUtil.AdminUtil;
-import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.PasswordUtil;
+import edu.icet.clothify.util.dtoUtil.AdminUtil;
 import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -14,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -44,10 +42,10 @@ public class AdminLoginFormController {
                 AdminUtil.getInstance().setAdminInstance(admin);
                 setUpStage(event);
             }else{
-                AlertHelper.showPasswordMismatchError();
+//                AlertHelper.showPasswordMismatchError();
             }
         }else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR,"Username Error","cannot find a admin with the username provided");
+//            AlertHelper.showAlert(Alert.AlertType.ERROR,"Username Error","cannot find a admin with the username provided");
         }
     }
 

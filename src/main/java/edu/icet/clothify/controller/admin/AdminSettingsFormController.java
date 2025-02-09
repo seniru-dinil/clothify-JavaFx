@@ -4,9 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.dto.Admin;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
-import edu.icet.clothify.util.dtoUtil.AdminUtil;
-import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.PasswordUtil;
+import edu.icet.clothify.util.dtoUtil.AdminUtil;
 import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -61,7 +60,7 @@ public class AdminSettingsFormController implements Initializable {
         if (txtNewPassword.getText().trim().equals(txtConfirmPassword.getText().trim())){
             updateAdmin();
         }else{
-          AlertHelper.showPasswordMismatchError();
+//          AlertHelper.showPasswordMismatchError();
         }
     }
 
@@ -76,7 +75,7 @@ public class AdminSettingsFormController implements Initializable {
         AdminService adminService = ServiceFactory.getInstance().getService(ServiceType.ADMIN);
         boolean b = adminService.updateAdmin(admin);
         if (b){
-            AlertHelper.showSuccessAlert("Update","Admin");
+//            AlertHelper.showSuccessAlert("Update","Admin");
             AdminUtil.getInstance().setAdminInstance(admin);
         }else{
             System.out.println("error");

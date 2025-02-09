@@ -85,4 +85,16 @@ public class ProductServiceImpl implements ProductService {
         return mostPurchasedProducts;
     }
 
+    @Override
+    public boolean updateProductByQuantity(Integer qty,Integer pid) {
+        ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+        return productDao.updateProductByQuantity(qty,pid);
+    }
+
+    @Override
+    public boolean updateProductByPrice(Double price, Integer pid) {
+        ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+        return productDao.updateProductByPrice(price,pid);
+    }
+
 }

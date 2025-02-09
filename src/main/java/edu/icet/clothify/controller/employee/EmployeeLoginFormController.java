@@ -3,9 +3,8 @@ package edu.icet.clothify.controller.employee;
 import edu.icet.clothify.dto.Employee;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.EmployeeService;
-import edu.icet.clothify.util.AlertHelper;
-import edu.icet.clothify.util.dtoUtil.EmployeeUtil;
 import edu.icet.clothify.util.PasswordUtil;
+import edu.icet.clothify.util.dtoUtil.EmployeeUtil;
 import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -14,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -57,14 +55,14 @@ public class EmployeeLoginFormController {
         EmployeeService employeeService = ServiceFactory.getInstance().getService(ServiceType.EMPLOYEE);
         Employee employee = employeeService.getEmployee(txtEmail.getText().trim());
         if(employee==null){
-            AlertHelper.showAlert(Alert.AlertType.ERROR,"username error","invalid username");
+//            AlertHelper.showAlert(Alert.AlertType.ERROR,"username error","invalid username");
         }else{
             String s = PasswordUtil.getInstance().decryptPassword(employee.getPassword());
             if(s.equals(txtPassword.getText().trim())){
                 EmployeeUtil.getInstance().setEmployeeInstance(employee);
                 setUpHome(event);
             }else{
-                AlertHelper.showPasswordMismatchError();
+//                AlertHelper.showPasswordMismatchError();
             }
         }
     }

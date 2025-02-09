@@ -1,7 +1,6 @@
 package edu.icet.clothify.repository.custom.impl;
 
 import edu.icet.clothify.entity.AdminEntity;
-import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.repository.custom.AdminDao;
 import edu.icet.clothify.util.HibernateUtil;
 import edu.icet.clothify.util.PasswordUtil;
@@ -70,12 +69,10 @@ public class AdminDaoImpl implements AdminDao {
                     .executeUpdate();
             transaction.commit();
             if (updatedRows == 0) {
-                System.out.println("No admin found with email: " + email);
                 return false;
             }
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
-            e.printStackTrace();
             return false;
         }
         return true;

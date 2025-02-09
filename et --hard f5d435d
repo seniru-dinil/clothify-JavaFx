@@ -1,0 +1,17 @@
+[33mf5d435d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m179f64a[m HEAD@{1}: commit: final commit
+[33mf5d435d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{2}: commit: finalizing
+[33m086bf6a[m HEAD@{3}: commit: product,employee,supplier search function done
+[33meab296e[m HEAD@{4}: commit: customer filtering done
+[33ma696cff[m HEAD@{5}: commit: pdf generating done
+[33mfaa2b8b[m HEAD@{6}: commit: product updating functionality done
+[33m0452a77[m HEAD@{7}: commit: product updating functionality done
+[33m6f61918[m HEAD@{8}: commit: some files deleted
+[33m8680195[m HEAD@{9}: commit: send otp done
+[33m261b9c1[m HEAD@{10}: commit: hibernate integrated done
+[33md07d99d[m HEAD@{11}: commit: getting data from the database
+[33maedf21a[m HEAD@{12}: commit: made some changes to folder structure
+[33m17f266b[m HEAD@{13}: commit: user interfaces done
+[33m113e0b6[m HEAD@{14}: commit: deleted some files
+[33ma14c6fe[m HEAD@{15}: Branch: renamed refs/heads/master to refs/heads/main
+[33ma14c6fe[m HEAD@{17}: commit (initial): project initialisation

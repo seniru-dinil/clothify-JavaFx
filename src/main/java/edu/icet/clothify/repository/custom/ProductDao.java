@@ -17,4 +17,7 @@ public interface ProductDao extends CrudDao<ProductEntity> {
 
     List<MostPurchasedProductEntity> getMostPurchasedProducts();
 
+    boolean updateProductByQuantity(Integer qty,Integer pid);
+
+    boolean updateProductByPrice(Double price, Integer pid);
 }

@@ -2,7 +2,6 @@ package edu.icet.clothify.util.dtoUtil;
 
 import edu.icet.clothify.component.tableCard.CustomerTableCard;
 import edu.icet.clothify.dto.Customer;
-import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.service.custom.impl.CustomerServiceImpl;
@@ -11,9 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerUtil {
@@ -51,11 +48,9 @@ public class CustomerUtil {
     }
 
     public void reloadContainer()  {
-        CustomerService customerService = (CustomerServiceImpl) ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
-        List<CustomerEntity> allCustomer = customerService.getAllCustomer();
-        List<Customer> customers = new ArrayList<>();
-        allCustomer.forEach(c-> customers.add(new ModelMapper().map(c,Customer.class)));
-        populateCustomerCards(customers);
+        CustomerService customerService = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
+        List<Customer> allCustomer = customerService.getAllCustomer();
+        populateCustomerCards(allCustomer);
     }
     public void populateCustomerCards(List<Customer> customers) {
         container.getChildren().clear();

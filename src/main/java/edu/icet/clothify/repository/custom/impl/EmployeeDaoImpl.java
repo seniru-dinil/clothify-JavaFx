@@ -1,14 +1,13 @@
 package edu.icet.clothify.repository.custom.impl;
 
 
-import edu.icet.clothify.entity.AdminEntity;
-import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.entity.EmployeeEntity;
 import edu.icet.clothify.repository.custom.EmployeeDao;
 import edu.icet.clothify.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
 import java.util.List;
 
 public class EmployeeDaoImpl implements EmployeeDao {

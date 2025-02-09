@@ -1,6 +1,5 @@
 package edu.icet.clothify.repository.custom.impl;
 
-import edu.icet.clothify.dto.Customer;
 import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.repository.custom.CustomerDao;
 import edu.icet.clothify.util.HibernateUtil;
@@ -11,7 +10,6 @@ import org.hibernate.query.Query;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class CustomerDaoImpl implements CustomerDao {
     @Override
@@ -93,7 +91,6 @@ public class CustomerDaoImpl implements CustomerDao {
                 }
                 return customerEntityDoubleMap;
             } catch (Exception e) {
-                e.printStackTrace();
                 return null;
             }
         }
@@ -116,7 +113,6 @@ public class CustomerDaoImpl implements CustomerDao {
                 return true;
             }catch (Exception e){
                 transaction.rollback();
-                e.printStackTrace();
                 return false;
             }
         }
@@ -125,10 +121,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<CustomerEntity> getAll(){
         Session session = HibernateUtil.getSession();
-        Transaction tx = session.beginTransaction();
         Query<CustomerEntity> query = session.createQuery("FROM CustomerEntity", CustomerEntity.class);
-        List<CustomerEntity> customers = query.list();
-        tx.commit();
-        return customers;
+        return query.list();
     }
 }
