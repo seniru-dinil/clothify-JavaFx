@@ -6,8 +6,8 @@ import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
 import edu.icet.clothify.util.EmailUtil;
 import edu.icet.clothify.util.OTPGenerator;
-import edu.icet.clothify.util.enums.ServiceType;
 import edu.icet.clothify.util.Validation;
+import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +27,7 @@ public class AdminForgotPasswordFormController implements Initializable {
 
     public JFXButton btnVerify;
     public JFXButton btnConfirm;
+    public Label code;
     @FXML
     private Label lblEmail;
 
@@ -73,6 +74,8 @@ public class AdminForgotPasswordFormController implements Initializable {
 
     @FXML
     void btnSendOTPOnAction(ActionEvent event) {
+        code.setText("We sent code to");
+        lblEmail.setText(txtEmail.getText().trim());
         currentOTP = OTPGenerator.getInstance().generateOTP();
         boolean b = EmailUtil.sendOTPEmail(txtEmail.getText().trim(), currentOTP);
             btnVerify.setDisable(!b);
@@ -80,12 +83,10 @@ public class AdminForgotPasswordFormController implements Initializable {
     }
 
     public void btnVerifyOnAction(ActionEvent event) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(txtOTP1.getText());
-        stringBuilder.append(txtOTP2.getText());
-        stringBuilder.append(txtOTP3.getText());
-        stringBuilder.append(txtOTP4.getText());
-        String otp = stringBuilder.toString();
+        String otp = txtOTP1.getText() +
+                txtOTP2.getText() +
+                txtOTP3.getText() +
+                txtOTP4.getText();
         boolean equals = otp.equals(currentOTP);
         if (equals){
             txtNewPassword.setEditable(true);

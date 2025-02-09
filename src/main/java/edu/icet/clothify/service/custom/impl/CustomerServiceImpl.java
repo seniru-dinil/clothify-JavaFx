@@ -46,7 +46,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomer(String id) {
         CustomerDao customerDao = DaoFactory.getInstance().getDao(DaoType.CUSTOMER);
-        return new ModelMapper().map(customerDao.get(id), Customer.class);
+        CustomerEntity customerEntity = customerDao.get(id);
+        return customerEntity==null?null:new ModelMapper().map(customerEntity, Customer.class);
     }
 
     @Override

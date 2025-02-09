@@ -3,6 +3,7 @@ package edu.icet.clothify.controller.employee;
 import edu.icet.clothify.dto.Employee;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.EmployeeService;
+import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.PasswordUtil;
 import edu.icet.clothify.util.dtoUtil.EmployeeUtil;
 import edu.icet.clothify.util.enums.ServiceType;
@@ -55,14 +56,14 @@ public class EmployeeLoginFormController {
         EmployeeService employeeService = ServiceFactory.getInstance().getService(ServiceType.EMPLOYEE);
         Employee employee = employeeService.getEmployee(txtEmail.getText().trim());
         if(employee==null){
-//            AlertHelper.showAlert(Alert.AlertType.ERROR,"username error","invalid username");
+            AlertHelper.showErrorAlert("Employee","Invalid Username");
         }else{
             String s = PasswordUtil.getInstance().decryptPassword(employee.getPassword());
             if(s.equals(txtPassword.getText().trim())){
                 EmployeeUtil.getInstance().setEmployeeInstance(employee);
                 setUpHome(event);
             }else{
-//                AlertHelper.showPasswordMismatchError();
+           AlertHelper.showErrorAlert("Password","Invalid Password");
             }
         }
     }

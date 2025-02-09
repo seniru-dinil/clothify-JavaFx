@@ -44,4 +44,16 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getOrdersByDate() {
         return List.of();
     }
+
+    @Override
+    public Double getTotalSales() {
+        OrderDao orderDao = DaoFactory.getInstance().getDao(DaoType.ORDER);
+        return orderDao.getTotalSales();
+    }
+
+    @Override
+    public Integer getOrdersCount() {
+        OrderDao orderDao = DaoFactory.getInstance().getDao(DaoType.ORDER);
+        return orderDao.getOrdersCount();
+    }
 }

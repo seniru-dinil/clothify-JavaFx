@@ -6,7 +6,9 @@ import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.entity.MostPurchasedProductEntity;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.CustomerService;
+import edu.icet.clothify.service.custom.OrderService;
 import edu.icet.clothify.service.custom.ProductService;
+import edu.icet.clothify.service.custom.SupplierService;
 import edu.icet.clothify.util.enums.ServiceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +50,21 @@ public class AdminDashboardFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setVboxTopProductsContainer();
         setvBoxBestCustomers();
+        setValuesToPanes();
+    }
+
+    public void setValuesToPanes(){
+        ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
+        Integer totalProductCount = productService.getTotalProductCount();
+        txtTotalProducts.setText(String.valueOf(totalProductCount));
+        SupplierService supplierService = ServiceFactory.getInstance().getService(ServiceType.SUPPLIER);
+        Integer totalSupplierCount = supplierService.getTotalSupplierCount();
+        txtTotalSuppliers.setText(String.valueOf(totalSupplierCount));
+        OrderService orderService = ServiceFactory.getInstance().getService(ServiceType.ORDER);
+        Integer ordersCount = orderService.getOrdersCount();
+        txtTotalOrders.setText(String.valueOf(ordersCount));
+        Double totalSales = orderService.getTotalSales();
+        txtTotalSales.setText(String.valueOf(totalSales));
     }
 
     public void setVboxTopProductsContainer() {
@@ -58,7 +75,7 @@ public class AdminDashboardFormController implements Initializable {
         } else {
             vboxTopProductsContainer.getChildren().clear();
             for (MostPurchasedProductEntity p : mostPurchasedProducts) {
-                HBox productItem = DashboardProductItemFactory.getInstance().createProductItem(p.getProduct().getProductName(), p.getTotalQuantity(), p.getProduct().getProductPrice() * p.getTotalQuantity(), p.getProduct().getProductImagePath());
+                HBox productItem = DashboardProductItemFactory.getInstance().createProductItem(p);
                 vboxTopProductsContainer.getChildren().add(productItem);
             }
         }

@@ -9,7 +9,9 @@ import edu.icet.clothify.service.custom.CustomerService;
 import edu.icet.clothify.service.custom.OrderDetailService;
 import edu.icet.clothify.service.custom.OrderService;
 import edu.icet.clothify.service.custom.ProductService;
+import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.enums.ServiceType;
+import edu.icet.clothify.util.report.InvoiceGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,12 +48,14 @@ public class PlaceOrderFormController implements Initializable {
     void btnCompleOrderOnAction(ActionEvent event) {
         String selectedItem = cmbSelectCustomer.getSelectionModel().getSelectedItem();
         if (selectedItem == null) {
-//            AlertHelper.showAlert(Alert.AlertType.ERROR, "Customer Error", "Select customer before place an order");
+            AlertHelper.showErrorAlert("Customer","Select Customer before place an Order");
         } else {
-            if (placeOrder()) {
-                placeOrderDetails();
-                ShoppingCartService.getInstance().clearCart();
-//                AlertHelper.showSuccessAlert("Add","Order");
+            if (AlertHelper.showConfirmationAlert("Order","Do you want to place order?")) {
+                if (placeOrder()) {
+                    placeOrderDetails();
+                    ShoppingCartService.getInstance().clearCart();
+                    AlertHelper.showSuccessAlert("Order","Order has been placed succesfully!");
+                }
             }
         }
     }
@@ -64,6 +68,7 @@ public class PlaceOrderFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ShoppingCartService.getInstance().initializeFXModels(cartContainer, txtTotal);
+        ShoppingCartService.getInstance().clearCart();
         setValuesToCombo();
         scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
         loadProductCard(getProducts());
@@ -116,7 +121,7 @@ public class PlaceOrderFormController implements Initializable {
         ProductService productService = ServiceFactory.getInstance().getService(ServiceType.PRODUCT);
         OrderService service = ServiceFactory.getInstance().getService(ServiceType.ORDER);
         Order lastOrder = service.getLastOrder();
-//        InvoiceGenerator.generateInvoice("clothify_invoice.pdf",map,lastOrder,cartHelper);
+        InvoiceGenerator.generateInvoice("clothify_invoice.pdf",customer,lastOrder,cartHelper);
         for (CartHelper i : cartHelper) {
             Product product = i.getProduct();
             productService.updateProductByQuantity(product.getProductStock() - i.getQuantity(), product.getProductID());

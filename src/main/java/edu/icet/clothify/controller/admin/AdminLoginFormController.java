@@ -3,6 +3,7 @@ package edu.icet.clothify.controller.admin;
 import edu.icet.clothify.dto.Admin;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
+import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.PasswordUtil;
 import edu.icet.clothify.util.dtoUtil.AdminUtil;
 import edu.icet.clothify.util.enums.ServiceType;
@@ -42,10 +43,10 @@ public class AdminLoginFormController {
                 AdminUtil.getInstance().setAdminInstance(admin);
                 setUpStage(event);
             }else{
-//                AlertHelper.showPasswordMismatchError();
+        AlertHelper.showErrorAlert("Password","Invalid Password");
             }
         }else {
-//            AlertHelper.showAlert(Alert.AlertType.ERROR,"Username Error","cannot find a admin with the username provided");
+            AlertHelper.showErrorAlert("Admin","Invalid Username");
         }
     }
 

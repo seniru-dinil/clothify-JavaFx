@@ -3,6 +3,7 @@ package edu.icet.clothify.controller.admin;
 import edu.icet.clothify.dto.Admin;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
+import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.PasswordUtil;
 import edu.icet.clothify.util.enums.ServiceType;
 import javafx.event.ActionEvent;
@@ -37,16 +38,21 @@ public class AdminSignupFormController {
 
     @FXML
     void btnCreateAccountOnAction(ActionEvent event) throws IOException {
-        AdminService adminService = ServiceFactory.getInstance().getService(ServiceType.ADMIN);
-        adminService.addAdmin(new Admin(
-                0,
-                txtFirstName.getText(),
-                txtLastName.getText(),
-                txtEmail.getText(),
-                PasswordUtil.getInstance().encryptPassword(txtPassword.getText())
-        ));
-        closeWindow(event);
-        loadSigninWindow();
+        boolean equals = txtPassword.getText().trim().equals(txtConfirmPassword.getText().trim());
+        if (equals) {
+            AdminService adminService = ServiceFactory.getInstance().getService(ServiceType.ADMIN);
+            adminService.addAdmin(new Admin(
+                    0,
+                    txtFirstName.getText(),
+                    txtLastName.getText(),
+                    txtEmail.getText(),
+                    PasswordUtil.getInstance().encryptPassword(txtPassword.getText())
+            ));
+            closeWindow(event);
+            loadSigninWindow();
+        } else {
+            AlertHelper.showErrorAlert("Password", "Passwords does not match");
+        }
     }
 
     @FXML

@@ -11,4 +11,6 @@ public interface OrderService extends SupperService {
     List<Order> getOrderList();
     Order getLastOrder();
     List<Order> getOrdersByDate();
+    Double getTotalSales();
+    Integer getOrdersCount();
 }

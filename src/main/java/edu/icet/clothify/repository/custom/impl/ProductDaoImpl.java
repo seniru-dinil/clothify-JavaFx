@@ -217,4 +217,15 @@ public class ProductDaoImpl implements ProductDao {
         }
         return false;
     }
+
+    @Override
+    public Integer getTotalProductCount() {
+        try(Session session = HibernateUtil.getSession()){
+            return session.createQuery("SELECT COUNT(p) FROM ProductEntity p",Long.class)
+                    .uniqueResult()
+                    .intValue();
+        }catch (Exception e){
+            return 0;
+        }
+    }
 }

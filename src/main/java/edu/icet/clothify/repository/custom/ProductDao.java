@@ -20,4 +20,6 @@ public interface ProductDao extends CrudDao<ProductEntity> {
     boolean updateProductByQuantity(Integer qty,Integer pid);
 
     boolean updateProductByPrice(Double price, Integer pid);
+
+    Integer getTotalProductCount();
 }

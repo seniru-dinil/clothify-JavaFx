@@ -53,4 +53,10 @@ public class SupplierServiceImpl implements SupplierService {
         suppliersByName.forEach(s->list.add(new ModelMapper().map(s,Supplier.class)));
         return list;
     }
+
+    @Override
+    public Integer getTotalSupplierCount() {
+        SupplierDao supplierDao = DaoFactory.getInstance().getDao(DaoType.SUPPLIER);
+        return supplierDao.getTotalSupplierCount();
+    }
 }

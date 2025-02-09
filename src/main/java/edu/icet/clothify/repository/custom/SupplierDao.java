@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SupplierDao extends CrudDao<SupplierEntity> {
     List<SupplierEntity> getSuppliersByName(String name);
+    Integer getTotalSupplierCount();
 }

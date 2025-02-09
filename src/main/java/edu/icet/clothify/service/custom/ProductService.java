@@ -18,4 +18,5 @@ public interface ProductService extends SupperService {
     List<MostPurchasedProductEntity> getMostPurchasedProducts();
     boolean updateProductByQuantity(Integer qty,Integer pid);
     boolean updateProductByPrice(Double price,Integer pid);
+    Integer getTotalProductCount();
 }

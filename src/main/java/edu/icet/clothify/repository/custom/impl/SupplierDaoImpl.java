@@ -1,6 +1,5 @@
 package edu.icet.clothify.repository.custom.impl;
 
-import edu.icet.clothify.entity.CustomerEntity;
 import edu.icet.clothify.entity.SupplierEntity;
 import edu.icet.clothify.repository.custom.SupplierDao;
 import edu.icet.clothify.util.HibernateUtil;
@@ -96,6 +95,17 @@ public class SupplierDaoImpl implements SupplierDao {
             }catch (Exception e){
                 return  null;
             }
+        }
+    }
+
+    @Override
+    public Integer getTotalSupplierCount() {
+        try(Session session = HibernateUtil.getSession()){
+            return session.createQuery("SELECT COUNT(s) FROM SupplierEntity s",Long.class)
+                    .uniqueResult()
+                    .intValue();
+        }catch (Exception e){
+            return 0;
         }
     }
 }

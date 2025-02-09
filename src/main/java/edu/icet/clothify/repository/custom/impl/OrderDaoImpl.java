@@ -65,9 +65,32 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public OrderEntity getLastOrder() {
         try(Session session = HibernateUtil.getSession()){
-            return session.createQuery("FROM OrderEntity ORDER BY orderID DESC", OrderEntity.class)
+            return session.createQuery("FROM OrderEntity ORDER BY orderId DESC", OrderEntity.class)
                     .setMaxResults(1)
             .uniqueResult();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Double getTotalSales() {
+        try(Session session=HibernateUtil.getSession()){
+            return session.createQuery("SELECT SUM(o.orderTotal) FROM OrderEntity o", Double.class)
+                    .uniqueResult();
+        }catch (Exception e){
+            return 0.0;
+        }
+    }
+
+    @Override
+    public Integer getOrdersCount() {
+      try(Session session = HibernateUtil.getSession()){
+          return session.createQuery("SELECT COUNT(o) FROM OrderEntity o", Long.class)
+                  .uniqueResult()
+                  .intValue();
+      }catch (Exception e){
+          return 0;
+      }
     }
 }

@@ -97,4 +97,10 @@ public class ProductServiceImpl implements ProductService {
         return productDao.updateProductByPrice(price,pid);
     }
 
+    @Override
+    public Integer getTotalProductCount() {
+        ProductDao productDao = DaoFactory.getInstance().getDao(DaoType.PRODUCT);
+        return productDao.getTotalProductCount();
+    }
+
 }
