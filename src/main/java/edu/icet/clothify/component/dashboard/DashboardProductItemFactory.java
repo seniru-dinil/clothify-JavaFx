@@ -33,11 +33,12 @@ public class DashboardProductItemFactory {
         hboxProduct.setAlignment(Pos.CENTER_LEFT);
         hboxProduct.setStyle("-fx-background-color: rgba(55, 65, 81,0.5);");
         hboxProduct.setPadding(new Insets(15));
+        hboxProduct.setStyle("-fx-background-color: rgba(55, 65, 81,0.5); -fx-background-radius:10px");
 
 
         StackPane imageContainer = new StackPane();
         imageContainer.setPrefSize(70, 42);
-        imageContainer.setStyle("-fx-background-color: #4B5563;");
+        imageContainer.setStyle("-fx-background-color: #4B5563; -fx-background-radius:5px");
 
 
         ImageView productImage = new ImageView(new Image(imagePath));

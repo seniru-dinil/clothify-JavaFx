@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane prefHeight="677.0" prefWidth="832.0" style="-fx-background-color: #111827;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.clothify.controller.forms.AddCustomerFormController">
    <children>
       <HBox alignment="CENTER" layoutY="7.0" prefHeight="78.0" prefWidth="832.0" spacing="20.0">
@@ -54,7 +49,7 @@
             <Insets left="150.0" right="150.0" top="20.0" />
          </padding>
          <children>
-            <VBox prefHeight="117.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937;">
+            <VBox prefHeight="117.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937; -fx-background-radius: 5px;">
                <children>
                   <Label prefHeight="16.0" prefWidth="142.0" text="Basic Information" textFill="WHITE">
                      <font>
@@ -66,13 +61,13 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
                            <children>
                               <Label text="First Name" textFill="#d1d5db" />
-                              <TextField fx:id="txtFirstName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                              <TextField fx:id="txtFirstName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151; -fx-background-radius: 5px;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
                            <children>
                               <Label text="Last Name" textFill="#d1d5db" />
-                              <TextField fx:id="txtLastName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                              <TextField fx:id="txtLastName" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151; -fx-background-radius: 5px;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -82,7 +77,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
-            <VBox layoutX="160.0" layoutY="30.0" prefHeight="198.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937;">
+            <VBox layoutX="160.0" layoutY="30.0" prefHeight="198.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937; -fx-background-radius: 5px;">
                <children>
                   <Label text="Contact Information" textFill="WHITE">
                      <font>
@@ -94,7 +89,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
                            <children>
                               <Label text="Email Address" textFill="#d1d5db" />
-                              <TextField fx:id="txtEmail" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                              <TextField fx:id="txtEmail" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151; -fx-background-radius: 5px;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -104,7 +99,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="542.0" spacing="3.0">
                            <children>
                               <Label text="Mobile Number" textFill="#d1d5db" />
-                              <TextField fx:id="txtMobile" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                              <TextField fx:id="txtMobile" prefHeight="31.0" prefWidth="286.0" style="-fx-background-color: #374151; -fx-background-radius: 5px;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -114,7 +109,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="117.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937;">
+            <VBox prefHeight="117.0" prefWidth="531.0" spacing="10.0" style="-fx-background-color: #1F2937; -fx-background-radius: 5px;">
                <children>
                   <Label prefHeight="16.0" prefWidth="142.0" text="Living Address" textFill="WHITE">
                      <font>
@@ -126,13 +121,13 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
                            <children>
                               <Label text="City" textFill="#d1d5db" />
-                              <TextField fx:id="txtAddress" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                              <TextField fx:id="txtAddress" prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151; -fx-background-radius: 5px;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="77.0" prefWidth="246.0" spacing="3.0">
                            <children>
                               <Label text="Postal Code" textFill="#d1d5db" />
-                              <TextField prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
+                              <TextField prefHeight="31.0" prefWidth="246.0" style="-fx-background-color: #374151; -fx-background-radius: 5px;" styleClass="font-color" stylesheets="@../../css/login/login.css" />
                            </children>
                         </VBox>
                      </children>
@@ -144,12 +139,12 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="531.0" spacing="15.0">
                <children>
-                  <JFXButton onAction="#btnCancelOnAction" prefHeight="0.0" prefWidth="67.0" style="-fx-background-color: #374151;" text="Cancel" textFill="WHITE">
+                  <JFXButton onAction="#btnCancelOnAction" prefHeight="0.0" prefWidth="67.0" style="-fx-background-color: #374151; -fx-background-radius: 5px;" text="Cancel" textFill="WHITE">
                      <padding>
                         <Insets bottom="7.0" top="7.0" />
                      </padding>
                   </JFXButton>
-                  <JFXButton onAction="#btnSaveOnAction" prefHeight="0.0" prefWidth="110.0" style="-fx-background-color: #2563EB;" text="Save Customer" textFill="WHITE">
+                  <JFXButton onAction="#btnSaveOnAction" prefHeight="0.0" prefWidth="110.0" style="-fx-background-color: #2563EB; -fx-background-radius: 5px;" text="Save Customer" textFill="WHITE">
                      <padding>
                         <Insets bottom="7.0" top="7.0" />
                      </padding>

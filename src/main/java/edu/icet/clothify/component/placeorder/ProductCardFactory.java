@@ -26,7 +26,7 @@ public class ProductCardFactory {
         itemCard.setPrefHeight(314);
         itemCard.setPrefWidth(275);
         itemCard.setSpacing(9);
-        itemCard.setStyle("-fx-background-color: #1F2937;");
+        itemCard.setStyle("-fx-background-color: #1F2937; -fx-background-radius: 10px;");
         itemCard.setPadding(new Insets(15));
 
 
@@ -86,7 +86,7 @@ public class ProductCardFactory {
 
 
         JFXButton addToCartButton = new JFXButton("Add to cart");
-        addToCartButton.setStyle("-fx-background-color: #2563EB; -fx-text-fill: WHITE;");
+        addToCartButton.setStyle("-fx-background-color: #2563EB; -fx-text-fill: WHITE; -fx-background-radius:5px");
         addToCartButton.setPrefSize(284, 29);
         addToCartButton.setPadding(new Insets(7,0,7,0));
         if (product.getProductStock()<=0)addToCartButton.setDisable(true);
@@ -94,6 +94,7 @@ public class ProductCardFactory {
             if (product.getProductStock()<=0)addToCartButton.setDisable(true);
             else ShoppingCartService.getInstance().addToCartContainer(product);
         });
+
 
 
         itemCard.getChildren().addAll(

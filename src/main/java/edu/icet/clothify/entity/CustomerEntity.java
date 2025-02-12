@@ -21,4 +21,6 @@ public class CustomerEntity {
     private String email;
     private String mobileNumber;
     private String address;
+    @Column(columnDefinition = "BOOLEAN DEFAULT true")
+    private boolean enable;
 }

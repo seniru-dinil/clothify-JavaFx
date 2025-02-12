@@ -25,8 +25,9 @@ public class DashboardCustomerItemFactory {
     public HBox createEmployeeItem(String customerName, Double totalSpent) {
         HBox hboxCustomer = new HBox(15);
         hboxCustomer.setPrefSize(250, 70);
-        hboxCustomer.setStyle("-fx-background-color: rgba(55, 65, 81,0.5);");
+        hboxCustomer.setStyle("-fx-background-color: rgba(55, 65, 81,0.5); -fx-background-radius:10px");
         hboxCustomer.setAlignment(Pos.CENTER);
+
 
         ImageView profileImage = new ImageView(new Image("/img/admin.png"));
         profileImage.setFitHeight(28);

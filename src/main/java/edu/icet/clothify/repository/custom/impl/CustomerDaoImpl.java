@@ -34,9 +34,9 @@ public class CustomerDaoImpl implements CustomerDao {
             try {
                 CustomerEntity customer = session.get(CustomerEntity.class, id);
                 if (customer != null) {
-                    session.remove(customer);
+                    customer.setEnable(false);
+                    session.merge(customer);
                     transaction.commit();
-
                     return true;
                 }
                 return false;
@@ -121,7 +121,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<CustomerEntity> getAll(){
         Session session = HibernateUtil.getSession();
-        Query<CustomerEntity> query = session.createQuery("FROM CustomerEntity", CustomerEntity.class);
+        Query<CustomerEntity> query = session.createQuery("FROM CustomerEntity WHERE enable=true", CustomerEntity.class);
         return query.list();
     }
 }

@@ -63,7 +63,7 @@
                   <Insets left="25.0" right="25.0" />
                </padding>
                <children>
-                  <Pane minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937;">
+                  <Pane minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937; -fx-background-radius: 12px;">
                      <children>
                         <Label fx:id="txtTotalSales" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="61.0" text="198,000" textFill="WHITE">
                            <font>
@@ -71,7 +71,7 @@
                            </font>
                         </Label>
                         <Label layoutX="19.0" layoutY="17.0" text="Total Sales" textFill="#9ca3af" />
-                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141;">
+                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141; -fx-background-radius: 10px;">
                            <children>
                               <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -82,7 +82,7 @@
                         </StackPane>
                      </children>
                   </Pane>
-                  <Pane layoutX="35.0" layoutY="10.0" minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937;">
+                  <Pane layoutX="35.0" layoutY="10.0" minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937; -fx-background-radius: 12px;">
                      <children>
                         <Label fx:id="txtTotalProducts" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="61.0" text="103" textFill="WHITE">
                            <font>
@@ -90,7 +90,7 @@
                            </font>
                         </Label>
                         <Label layoutX="19.0" layoutY="17.0" text="Total Products" textFill="#9ca3af" />
-                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141;">
+                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141; -fx-background-radius: 12px;">
                            <children>
                               <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -101,7 +101,7 @@
                         </StackPane>
                      </children>
                   </Pane>
-                  <Pane layoutX="268.0" layoutY="10.0" minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937;">
+                  <Pane layoutX="268.0" layoutY="10.0" minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937; -fx-background-radius: 12px;">
                      <children>
                         <Label fx:id="txtTotalOrders" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="61.0" text="14" textFill="WHITE">
                            <font>
@@ -109,7 +109,7 @@
                            </font>
                         </Label>
                         <Label layoutX="19.0" layoutY="17.0" text="Today Orders" textFill="#9ca3af" />
-                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141;">
+                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141; -fx-background-radius: 12px;">
                            <children>
                               <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -120,7 +120,7 @@
                         </StackPane>
                      </children>
                   </Pane>
-                  <Pane layoutX="500.0" layoutY="10.0" minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937;">
+                  <Pane layoutX="500.0" layoutY="10.0" minWidth="-Infinity" prefHeight="110.0" prefWidth="188.0" style="-fx-background-color: #1F2937; -fx-background-radius: 12px;">
                      <children>
                         <Label fx:id="txtTotalSuppliers" alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="61.0" text="7" textFill="WHITE">
                            <font>
@@ -128,7 +128,7 @@
                            </font>
                         </Label>
                         <Label layoutX="19.0" layoutY="17.0" text="Total Suppliers" textFill="#9ca3af" />
-                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141;">
+                        <StackPane layoutX="118.0" layoutY="17.0" prefHeight="42.0" prefWidth="47.0" style="-fx-background-color: #253141; -fx-background-radius: 12px;">
                            <children>
                               <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -149,7 +149,7 @@
                   <Insets left="25.0" right="25.0" />
                </padding>
                <children>
-                  <VBox prefHeight="350.0" prefWidth="382.0" spacing="20.0" style="-fx-background-color: #1F2937;">
+                  <VBox prefHeight="350.0" prefWidth="382.0" spacing="20.0" style="-fx-background-color: #1F2937; -fx-background-radius: 7px;">
                      <children>
                         <Label alignment="CENTER" prefHeight="32.0" prefWidth="318.0" text="Best Customers" textFill="WHITE">
                            <font>
@@ -267,7 +267,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="15.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="350.0" prefWidth="630.0" spacing="20.0" style="-fx-background-color: #1F2937;">
+                  <VBox prefHeight="350.0" prefWidth="630.0" spacing="20.0" style="-fx-background-color: #1F2937; -fx-background-radius: 7px;">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="15.0" />
                      </padding>
@@ -279,9 +279,9 @@
                         </Label>
                         <VBox fx:id="vboxTopProductsContainer" prefHeight="240.0" prefWidth="543.0" spacing="20.0">
                            <children>
-                              <HBox fx:id="hboxProduct" alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="543.0" spacing="15.0" style="-fx-background-color: rgba(55, 65, 81,0.5);">
+                              <HBox fx:id="hboxProduct" alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="543.0" spacing="15.0" style="-fx-background-color: rgba(55, 65, 81,0.5); -fx-background-radius: 10px;">
                                  <children>
-                                    <StackPane prefHeight="42.0" prefWidth="70.0" style="-fx-background-color: #4B5563;">
+                                    <StackPane prefHeight="42.0" prefWidth="70.0" style="-fx-background-color: #4B5563; -fx-background-radius: 5px;">
                                        <children>
                                           <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
