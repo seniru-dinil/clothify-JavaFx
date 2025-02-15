@@ -12,6 +12,7 @@ import edu.icet.clothify.service.custom.ProductService;
 import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.enums.ServiceType;
 import edu.icet.clothify.util.report.InvoiceGenerator;
+import edu.icet.clothify.util.report.ReportGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,6 +56,7 @@ public class PlaceOrderFormController implements Initializable {
                     placeOrderDetails();
                     ShoppingCartService.getInstance().clearCart();
                     AlertHelper.showSuccessAlert("Order","Order has been placed succesfully!");
+                    ReportGenerator.getInstance().generateOrderReport();
                 }
             }
         }

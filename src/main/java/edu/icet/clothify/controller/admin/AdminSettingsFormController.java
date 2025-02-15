@@ -98,5 +98,6 @@ public class AdminSettingsFormController implements Initializable {
             txtEmail.setText(adminInstance.getEmail());
             txtCurrentPassword.setText(PasswordUtil.getInstance().decryptPassword(adminInstance.getPassword()));
         }
+
     }
 }

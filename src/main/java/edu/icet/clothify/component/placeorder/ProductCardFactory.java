@@ -91,8 +91,7 @@ public class ProductCardFactory {
         addToCartButton.setPadding(new Insets(7,0,7,0));
         if (product.getProductStock()<=0)addToCartButton.setDisable(true);
         addToCartButton.setOnAction(event -> {
-            if (product.getProductStock()<=0)addToCartButton.setDisable(true);
-            else ShoppingCartService.getInstance().addToCartContainer(product);
+            ShoppingCartService.getInstance().addToCartContainer(product);
         });
 
 

@@ -4,6 +4,7 @@ package edu.icet.clothify.controller.admin;
 import com.jfoenix.controls.JFXButton;
 import edu.icet.clothify.service.ServiceFactory;
 import edu.icet.clothify.service.custom.AdminService;
+import edu.icet.clothify.util.AlertHelper;
 import edu.icet.clothify.util.EmailUtil;
 import edu.icet.clothify.util.OTPGenerator;
 import edu.icet.clothify.util.Validation;
@@ -59,8 +60,12 @@ public class AdminForgotPasswordFormController implements Initializable {
         boolean match = Validation.getInstance().isMatch(txtNewPassword.getText().trim(), txtConfirmPassword.getText().trim());
       if (match){
           AdminService adminService = ServiceFactory.getInstance().getService(ServiceType.ADMIN);
-          adminService.updateAdmin(txtEmail.getText().trim(),txtConfirmPassword.getText().trim());
-          loadLoginWindow(event);
+          boolean b = adminService.updateAdmin(txtEmail.getText().trim(), txtConfirmPassword.getText().trim());
+          if (b) {
+              loadLoginWindow(event);
+          }else{
+              AlertHelper.showErrorAlert("admin","invalid username");
+          }
       }else{
 
       }
@@ -79,7 +84,7 @@ public class AdminForgotPasswordFormController implements Initializable {
         currentOTP = OTPGenerator.getInstance().generateOTP();
         boolean b = EmailUtil.sendOTPEmail(txtEmail.getText().trim(), currentOTP);
             btnVerify.setDisable(!b);
-        System.out.println(b?"otp send succesfully":"error");
+        System.out.println(b?"otp send successfully":"error");
     }
 
     public void btnVerifyOnAction(ActionEvent event) {
@@ -99,6 +104,7 @@ public class AdminForgotPasswordFormController implements Initializable {
             txtConfirmPassword.setEditable(false);
             btnConfirm.setDisable(true);
             btnConfirm.setStyle("-fx-background-color:  #6366F1;");
+            AlertHelper.showErrorAlert("otp","otp does not math each other");
         }
     }
 
