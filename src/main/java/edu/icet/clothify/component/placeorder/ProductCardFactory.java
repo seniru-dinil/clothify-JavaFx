@@ -24,7 +24,7 @@ public class ProductCardFactory {
         VBox itemCard = new VBox();
         itemCard.setAlignment(Pos.TOP_CENTER);
         itemCard.setPrefHeight(314);
-        itemCard.setPrefWidth(275);
+        itemCard.setPrefWidth(250);
         itemCard.setSpacing(9);
         itemCard.setStyle("-fx-background-color: #1F2937; -fx-background-radius: 10px;");
         itemCard.setPadding(new Insets(15));

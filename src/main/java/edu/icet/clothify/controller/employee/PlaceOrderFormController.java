@@ -91,7 +91,7 @@ public class PlaceOrderFormController implements Initializable {
     private HBox createNewHBox() {
         HBox newHBox = new HBox();
         newHBox.setSpacing(10);
-        newHBox.setAlignment(Pos.CENTER);
+        newHBox.setAlignment(Pos.CENTER_LEFT);
         newHBox.setPadding(new Insets(0, 26, 0, 0));
         vboxContainer.getChildren().add(newHBox);
         return newHBox;
