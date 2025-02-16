@@ -40,8 +40,8 @@ public class AdminHomepageFormController implements Initializable {
     }
 
     @FXML
-    void btnReportsOnAction(ActionEvent event) {
-
+    void btnReportsOnAction(ActionEvent event) throws IOException {
+        loadWindow("manageOrdersForm.fxml");
     }
 
     @FXML

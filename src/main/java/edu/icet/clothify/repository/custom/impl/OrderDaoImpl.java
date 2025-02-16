@@ -1,5 +1,6 @@
 package edu.icet.clothify.repository.custom.impl;
 
+import edu.icet.clothify.dto.OrderTable;
 import edu.icet.clothify.entity.OrderEntity;
 import edu.icet.clothify.repository.custom.OrderDao;
 import edu.icet.clothify.util.HibernateUtil;
@@ -7,7 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderDaoImpl implements OrderDao {
     @Override
@@ -92,5 +96,32 @@ public class OrderDaoImpl implements OrderDao {
       }catch (Exception e){
           return 0;
       }
+    }
+
+    @Override
+    public List<OrderTable> getOrderTableData() {
+        try (Session session = HibernateUtil.getSession()) {
+
+            String hql = "SELECT o.orderId, c.firstName, c.lastName, c.mobileNumber, o.orderTotal, o.orderDate " +
+                    "FROM OrderEntity o " +
+                    "JOIN o.customerId c";
+
+
+            List<Object[]> results = session.createQuery(hql, Object[].class).getResultList();
+
+
+            return results.stream()
+                    .map(row -> new OrderTable(
+                            (Integer) row[0],
+                            row[1] + " " + row[2],
+                            (String) row[3],
+                            (Double) row[4],
+                            (LocalDateTime) row[5]
+                    ))
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 }

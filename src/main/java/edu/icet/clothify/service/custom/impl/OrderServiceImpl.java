@@ -1,6 +1,7 @@
 package edu.icet.clothify.service.custom.impl;
 
 import edu.icet.clothify.dto.Order;
+import edu.icet.clothify.dto.OrderTable;
 import edu.icet.clothify.entity.OrderEntity;
 import edu.icet.clothify.repository.DaoFactory;
 import edu.icet.clothify.repository.custom.OrderDao;
@@ -55,5 +56,11 @@ public class OrderServiceImpl implements OrderService {
     public Integer getOrdersCount() {
         OrderDao orderDao = DaoFactory.getInstance().getDao(DaoType.ORDER);
         return orderDao.getOrdersCount();
+    }
+
+    @Override
+    public List<OrderTable> getOrderTableData() {
+        OrderDao orderDao = DaoFactory.getInstance().getDao(DaoType.ORDER);
+        return orderDao.getOrderTableData();
     }
 }
